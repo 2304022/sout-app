@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}{{ org.name }} — СОУТ{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="breadcrumb"><a href="/orgs/">Организации</a> / {{ org.name }}</div>
+  <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+    <div>
+      <h2>{{ org.name }}</h2>
+      {% if org.inn %}<p style="margin:0;color:#555">ИНН: {{ org.inn }}</p>{% endif %}
+      {% if org.address %}<p style="margin:4px 0;color:#555">{{ org.address }}</p>{% endif %}
+    </div>
+    <div>
+      <a href="/orgs/{{ org.id }}/edit" class="btn btn-secondary">Редактировать</a>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <h3>Рабочие места ({{ org.workplaces|length }})</h3>
+    <a href="/rm/new/{{ org.id }}" class="btn btn-primary">+ Добавить РМ</a>
+  </div>
+  {% if org.workplaces %}
+  <table>
+    <thead>
+      <tr>
+        <th>№</th><th>Наименование РМ</th><th>Подразделение</th>
+        <th>Профессия</th><th>Чел.</th><th>Итог. класс</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for rm in org.workplaces %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td><a href="/rm/{{ rm.id }}">{{ rm.name }}</a></td>
+      <td>{{ rm.podr or '—' }}</td>
+      <td>{{ rm.profession or '—' }}</td>
+      <td>{{ rm.num_workers }}</td>
+      <td>
+        {% if rm.summary and rm.summary.kut_final %}
+          {% set k = rm.summary.kut_final %}
+          <span class="kut-{{ k }}">
+            {{ {1:'1',2:'2',31:'3.1',32:'3.2',33:'3.3',34:'3.4',4:'4'}[k] }}
+          </span>
+        {% else %}—{% endif %}
+      </td>
+      <td>
+        <form method="post" action="/rm/{{ rm.id }}/delete" style="display:inline"
+              onsubmit="return confirm('Удалить рабочее место?')">
+          <button type="submit" class="btn btn-danger" style="font-size:12px">Удалить</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p style="color:#888">Рабочих мест пока нет.</p>
+  {% endif %}
+</div>
+{% endblock %}

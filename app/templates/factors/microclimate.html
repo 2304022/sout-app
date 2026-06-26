@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}Микроклимат — {{ rm.name }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+  <a href="/orgs/{{ rm.org_id }}">{{ rm.org.name }}</a> /
+  <a href="/rm/{{ rm.id }}">{{ rm.name }}</a> / Микроклимат
+</div>
+<div class="card">
+  <h2>Микроклимат</h2>
+  <form method="post" action="/factor/microclimate/{{ rm.id }}/add">
+    <div class="form-row">
+      <div>
+        <label>Период года</label>
+        <select name="season">
+          <option value="warm">Тёплый</option>
+          <option value="cold">Холодный</option>
+        </select>
+      </div>
+      <div>
+        <label>Тип</label>
+        <select name="mode" id="mc_mode" onchange="toggleMC()">
+          <option value="heating">Нагревающий (ТНС-индекс)</option>
+          <option value="cooling">Охлаждающий</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Категория работ (энергозатраты)</label>
+        <select name="work_category">
+          <option value="Ia">Iа ≤120 ккал/ч — сидя</option>
+          <option value="Ib">Iб 121–150 ккал/ч — сидя+ходьба</option>
+          <option value="IIa" selected>IIа 151–200 ккал/ч — ходьба ≤1 кг</option>
+          <option value="IIb">IIб 201–250 ккал/ч — предметы ≤10 кг</option>
+          <option value="III">III &gt;250 ккал/ч — значит. тяжести</option>
+        </select>
+      </div>
+      <div id="tns_block">
+        <label>ТНС-индекс, °С</label>
+        <input type="number" name="tns_index" step="0.1" id="tns_inp">
+      </div>
+    </div>
+    <div id="cool_block" style="display:none">
+      <div class="form-row">
+        <div>
+          <label>Температура воздуха, °С</label>
+          <input type="number" name="air_temp" step="0.1">
+        </div>
+        <div>
+          <label>Скорость воздуха, м/с</label>
+          <input type="number" name="air_speed" step="0.01" min="0">
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Влажность, %</label>
+          <input type="number" name="humidity" step="1" min="0" max="100">
+        </div>
+        <div>
+          <label>Тепловое излучение, Вт/м²</label>
+          <input type="number" name="radiant_heat" step="1" min="0">
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    <a href="/rm/{{ rm.id }}" class="btn btn-secondary">← Назад</a>
+  </form>
+</div>
+<script>
+function toggleMC() {
+  var mode = document.getElementById('mc_mode').value;
+  document.getElementById('tns_block').style.display = mode === 'heating' ? '' : 'none';
+  document.getElementById('cool_block').style.display = mode === 'cooling' ? '' : 'none';
+  document.getElementById('tns_inp').required = (mode === 'heating');
+}
+</script>
+
+{% if items %}
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>Период</th><th>Тип</th><th>Кат.</th><th>ТНС / t°</th><th>Скор.</th><th>Влаж.</th><th>Класс УТ</th><th></th></tr>
+    </thead>
+    <tbody>
+    {% for m in items %}
+    <tr>
+      <td>{{ 'тёплый' if m.season=='warm' else 'хол.' }}</td>
+      <td>{{ 'нагр.' if m.mode=='heating' else 'охл.' }}</td>
+      <td>{{ m.work_category }}</td>
+      <td>{{ m.tns_index if m.tns_index else m.air_temp }}</td>
+      <td>{{ m.air_speed or '—' }}</td>
+      <td>{{ m.humidity or '—' }}</td>
+      <td><span class="kut-{{ m.kut }}">{{ {2:'2',31:'3.1',32:'3.2',33:'3.3',34:'3.4',4:'4'}[m.kut] if m.kut else '—' }}</span></td>
+      <td>
+        <form method="post" action="/factor/microclimate/{{ rm.id }}/delete/{{ m.id }}">
+          <button class="btn btn-danger" style="font-size:11px">✕</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

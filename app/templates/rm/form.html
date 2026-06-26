@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Редактировать РМ' if rm else 'Новое рабочее место' }}{% endblock %}
+{% block content %}
+<div class="card" style="max-width:600px">
+  <div class="breadcrumb">
+    <a href="/orgs/">Организации</a> /
+    <a href="/orgs/{{ org.id }}">{{ org.name }}</a> /
+    {{ 'Редактировать' if rm else 'Новое РМ' }}
+  </div>
+  <h2>{{ 'Редактировать рабочее место' if rm else 'Новое рабочее место' }}</h2>
+  <form method="post" action="{{ '/rm/' ~ rm.id ~ '/edit' if rm else '/rm/new/' ~ org.id }}">
+    <label>Наименование РМ *</label>
+    <input type="text" name="name" required value="{{ rm.name if rm else '' }}">
+    <label>Подразделение</label>
+    <input type="text" name="podr" value="{{ rm.podr if rm else '' }}">
+    <label>Профессия / должность</label>
+    <input type="text" name="profession" value="{{ rm.profession if rm else '' }}">
+    <div class="form-row">
+      <div>
+        <label>Количество работников</label>
+        <input type="number" name="num_workers" min="1" value="{{ rm.num_workers if rm else 1 }}">
+      </div>
+      <div>
+        <label>Длительность смены, ч</label>
+        <input type="number" name="shift_hours" min="1" max="24" step="0.5" value="{{ rm.shift_hours if rm else 8.0 }}">
+      </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{{ '/rm/' ~ rm.id if rm else '/orgs/' ~ org.id }}" class="btn btn-secondary">Отмена</a>
+  </form>
+</div>
+{% endblock %}

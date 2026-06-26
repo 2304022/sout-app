@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Ионизирующее излучение — {{ rm.name }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+  <a href="/orgs/{{ rm.org_id }}">{{ rm.org.name }}</a> /
+  <a href="/rm/{{ rm.id }}">{{ rm.name }}</a> / Ионизирующее излучение
+</div>
+<div class="card">
+  <h2>Ионизирующее излучение</h2>
+  <p style="font-size:13px;color:#555">Норматив: эффективная доза ≤5 мЗв/год → класс 2</p>
+  <form method="post" action="/factor/radiation/{{ rm.id }}/add">
+    <div class="form-row">
+      <div>
+        <label>Эффективная доза, мЗв/год *</label>
+        <input type="number" name="eff_dose_msv" step="0.01" min="0" required>
+      </div>
+      <div>
+        <label>Доза на хрусталик, мЗв/год</label>
+        <input type="number" name="lens_dose_msv" step="0.01" min="0">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Доза на кожу/кисти/стопы, мЗв/год</label>
+        <input type="number" name="skin_dose_msv" step="0.01" min="0">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    <a href="/rm/{{ rm.id }}" class="btn btn-secondary">← Назад</a>
+  </form>
+</div>
+{% if items %}
+<div class="card">
+  <table>
+    <thead><tr><th>Эфф. доза</th><th>Хрусталик</th><th>Кожа/кисти</th><th>Класс УТ</th><th></th></tr></thead>
+    <tbody>
+    {% for m in items %}
+    <tr>
+      <td>{{ m.eff_dose_msv }}</td>
+      <td>{{ m.lens_dose_msv or '—' }}</td>
+      <td>{{ m.skin_dose_msv or '—' }}</td>
+      <td><span class="kut-{{ m.kut }}">{{ {2:'2',31:'3.1',32:'3.2',33:'3.3',34:'3.4',4:'4'}[m.kut] if m.kut else '—' }}</span></td>
+      <td>
+        <form method="post" action="/factor/radiation/{{ rm.id }}/delete/{{ m.id }}">
+          <button class="btn btn-danger" style="font-size:11px">✕</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

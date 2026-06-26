@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}АПФД — {{ rm.name }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+  <a href="/orgs/{{ rm.org_id }}">{{ rm.org.name }}</a> /
+  <a href="/rm/{{ rm.id }}">{{ rm.name }}</a> / АПФД
+</div>
+<div class="card">
+  <h2>Аэрозоли фиброгенного действия (АПФД)</h2>
+  <form method="post" action="/factor/apfd/{{ rm.id }}/add">
+    <div class="form-row">
+      <div>
+        <label>Наименование пыли *</label>
+        <input type="text" name="substance_name" required>
+      </div>
+      <div>
+        <label>Фиброгенность</label>
+        <select name="fibrogenicity">
+          <option value="high">Высокая (кварц &gt;70%, ПДК≤1)</option>
+          <option value="moderate" selected>Умеренная (ПДК 1–2 мг/м³)</option>
+          <option value="low">Слабая (ПДК &gt;2 мг/м³)</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>ПДКсс мг/м³</label>
+        <input type="number" name="pdk_ss" step="any" min="0" required>
+      </div>
+      <div>
+        <label>Факт. концентрация мг/м³</label>
+        <input type="number" name="c_fact" step="any" min="0" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Нормируемый стаж, лет</label>
+        <input type="number" name="work_years" step="0.5" value="25" min="1">
+      </div>
+      <div>
+        <label>Смен в год</label>
+        <input type="number" name="shifts_per_year" value="247" min="1">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    <a href="/rm/{{ rm.id }}" class="btn btn-secondary">← Назад</a>
+  </form>
+</div>
+
+{% if items %}
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>Пыль</th><th>ПДКсс</th><th>Сфакт</th><th>КПН</th><th>ПН факт</th><th>Класс УТ</th><th></th></tr>
+    </thead>
+    <tbody>
+    {% for m in items %}
+    <tr>
+      <td>{{ m.substance_name }}</td>
+      <td>{{ m.pdk_ss }}</td>
+      <td>{{ m.c_fact }}</td>
+      <td>{{ '%.0f'|format(m.kpn) if m.kpn else '—' }}</td>
+      <td>{{ '%.0f'|format(m.pn_fact) if m.pn_fact else '—' }}</td>
+      <td><span class="kut-{{ m.kut }}">{{ {2:'2',31:'3.1',32:'3.2',33:'3.3',34:'3.4'}[m.kut] if m.kut else '—' }}</span></td>
+      <td>
+        <form method="post" action="/factor/apfd/{{ rm.id }}/delete/{{ m.id }}">
+          <button class="btn btn-danger" style="font-size:11px">✕</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

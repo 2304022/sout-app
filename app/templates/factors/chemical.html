@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}Химический фактор — {{ rm.name }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+  <a href="/orgs/">Орг.</a> /
+  <a href="/orgs/{{ rm.org_id }}">{{ rm.org.name }}</a> /
+  <a href="/rm/{{ rm.id }}">{{ rm.name }}</a> /
+  Химический фактор
+</div>
+
+<div class="card">
+  <h2>Химический фактор</h2>
+  <form method="post" action="/factor/chemical/{{ rm.id }}/add">
+    <div class="form-row">
+      <div>
+        <label>Наименование вещества *</label>
+        <input type="text" name="substance_name" required>
+      </div>
+      <div>
+        <label>Класс опасности</label>
+        <select name="danger_class">
+          <option value="1">1 (чрезвычайно опасные)</option>
+          <option value="2">2 (высоко опасные)</option>
+          <option value="3" selected>3 (умеренно опасные)</option>
+          <option value="4">4 (малоопасные)</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>ПДКсс (среднесменная) мг/м³</label>
+        <input type="number" name="pdk_ss" step="any" min="0">
+      </div>
+      <div>
+        <label>ПДКмакс (максимальная) мг/м³</label>
+        <input type="number" name="pdk_max" step="any" min="0">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Факт. концентрация (среднесменная) мг/м³</label>
+        <input type="number" name="c_ss" step="any" min="0">
+      </div>
+      <div>
+        <label>Факт. концентрация (максимальная) мг/м³</label>
+        <input type="number" name="c_max" step="any" min="0">
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0;">
+      <label><input type="checkbox" name="is_carcinogen" value="true"> Канцероген</label>
+      <label><input type="checkbox" name="is_allergen_high" value="true"> Аллерген высокоопасный</label>
+      <label><input type="checkbox" name="is_allergen_mod" value="true"> Аллерген умеренно</label>
+      <label><input type="checkbox" name="is_irritant" value="true"> Раздражающий</label>
+      <label><input type="checkbox" name="is_directed" value="true"> Остронаправленного действия</label>
+      <label><input type="checkbox" name="is_repro" value="true"> Репротоксикант</label>
+      <label><input type="checkbox" name="is_antitumor" value="true"> Противоопухолевое / гормон</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    <a href="/rm/{{ rm.id }}" class="btn btn-secondary">← Назад к РМ</a>
+  </form>
+</div>
+
+{% if items %}
+<div class="card">
+  <h3>Результаты измерений</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Вещество</th><th>Кл. оп.</th>
+        <th>ПДКсс</th><th>Сфакт (сс)</th>
+        <th>ПДКмакс</th><th>Сфакт (макс)</th>
+        <th>Особые свойства</th><th>Класс УТ</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for m in items %}
+    <tr>
+      <td>{{ m.substance_name }}</td>
+      <td>{{ m.danger_class }}</td>
+      <td>{{ m.pdk_ss or '—' }}</td>
+      <td>{{ m.c_ss or '—' }}</td>
+      <td>{{ m.pdk_max or '—' }}</td>
+      <td>{{ m.c_max or '—' }}</td>
+      <td style="font-size:11px">
+        {% if m.is_carcinogen %}К {% endif %}
+        {% if m.is_allergen_high %}АВ {% endif %}
+        {% if m.is_allergen_mod %}АУ {% endif %}
+        {% if m.is_irritant %}Р {% endif %}
+        {% if m.is_directed %}ОН {% endif %}
+        {% if m.is_repro %}РТ {% endif %}
+        {% if m.is_antitumor %}ПО {% endif %}
+        &nbsp;
+      </td>
+      <td><span class="kut-{{ m.kut }}">{{ {1:'1',2:'2',31:'3.1',32:'3.2',33:'3.3',34:'3.4',4:'4'}[m.kut] if m.kut else '—' }}</span></td>
+      <td>
+        <form method="post" action="/factor/chemical/{{ rm.id }}/delete/{{ m.id }}">
+          <button type="submit" class="btn btn-danger" style="font-size:11px">✕</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

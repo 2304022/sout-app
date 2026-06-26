@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}Тяжесть труда — {{ rm.name }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+  <a href="/orgs/{{ rm.org_id }}">{{ rm.org.name }}</a> /
+  <a href="/rm/{{ rm.id }}">{{ rm.name }}</a> / Тяжесть трудового процесса
+</div>
+<div class="card">
+  <h2>Тяжесть трудового процесса</h2>
+  <form method="post" action="/factor/heaviness/{{ rm.id }}/save">
+    <div style="margin-bottom:8px">
+      <label>Пол работника</label>
+      <select name="sex" style="width:auto">
+        <option value="m" {{ 'selected' if item and item.sex=='m' else '' }}>Мужской</option>
+        <option value="f" {{ 'selected' if item and item.sex=='f' else '' }}>Женский</option>
+      </select>
+    </div>
+
+    <h4 style="margin-bottom:4px">Физическая динамическая нагрузка, кг·м/смену</h4>
+    <div class="form-row">
+      <div>
+        <label>Региональная (руки, расстояние до 1 м)</label>
+        <input type="number" name="load_regional_1m" step="any" min="0"
+               value="{{ item.load_regional_1m if item and item.load_regional_1m else '' }}">
+      </div>
+      <div>
+        <label>Общая (корпус, 1–5 м)</label>
+        <input type="number" name="load_general_1_5m" step="any" min="0"
+               value="{{ item.load_general_1_5m if item and item.load_general_1_5m else '' }}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Общая (корпус, более 5 м)</label>
+        <input type="number" name="load_general_5m" step="any" min="0"
+               value="{{ item.load_general_5m if item and item.load_general_5m else '' }}">
+      </div>
+    </div>
+
+    <h4 style="margin-bottom:4px">Масса поднимаемого груза, кг</h4>
+    <div class="form-row">
+      <div>
+        <label>Разово (до 2 раз/час)</label>
+        <input type="number" name="mass_rare" step="any" min="0"
+               value="{{ item.mass_rare if item and item.mass_rare else '' }}">
+      </div>
+      <div>
+        <label>Постоянно (более 2 раз/час)</label>
+        <input type="number" name="mass_frequent" step="any" min="0"
+               value="{{ item.mass_frequent if item and item.mass_frequent else '' }}">
+      </div>
+    </div>
+
+    <h4 style="margin-bottom:4px">Суммарная масса груза за смену, кг</h4>
+    <div class="form-row">
+      <div>
+        <label>С пола</label>
+        <input type="number" name="mass_total_floor" step="any" min="0"
+               value="{{ item.mass_total_floor if item and item.mass_total_floor else '' }}">
+      </div>
+      <div>
+        <label>С рабочей поверхности</label>
+        <input type="number" name="mass_total_bench" step="any" min="0"
+               value="{{ item.mass_total_bench if item and item.mass_total_bench else '' }}">
+      </div>
+    </div>
+
+    <h4 style="margin-bottom:4px">Рабочая поза и перемещения</h4>
+    <div class="form-row">
+      <div>
+        <label>Стоя / на ногах, % смены</label>
+        <input type="number" name="pose_standing_pct" step="0.1" min="0" max="100"
+               value="{{ item.pose_standing_pct if item and item.pose_standing_pct else '' }}">
+      </div>
+      <div>
+        <label>Неудобная поза (наклон, скрюченность), % смены</label>
+        <input type="number" name="pose_awkward_pct" step="0.1" min="0" max="100"
+               value="{{ item.pose_awkward_pct if item and item.pose_awkward_pct else '' }}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Наклоны корпуса (&gt;30°), кол./смену</label>
+        <input type="number" name="bends_count" min="0"
+               value="{{ item.bends_count if item and item.bends_count else '' }}">
+      </div>
+      <div>
+        <label>Горизонтальные перемещения, км/смену</label>
+        <input type="number" name="moves_horizontal_km" step="0.1" min="0"
+               value="{{ item.moves_horizontal_km if item and item.moves_horizontal_km else '' }}">
+      </div>
+    </div>
+
+    <br>
+    <button type="submit" class="btn btn-primary">Сохранить и рассчитать</button>
+    <a href="/rm/{{ rm.id }}" class="btn btn-secondary">← Назад</a>
+  </form>
+
+  {% if item and item.kut %}
+  <div style="margin-top:16px; font-size:16px">
+    Класс условий труда: <span class="kut-{{ item.kut }}">
+      <strong>{{ {1:'1',2:'2',31:'3.1',32:'3.2'}[item.kut] if item.kut in [1,2,31,32] else item.kut }}</strong>
+    </span>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

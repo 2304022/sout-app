@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}ЭМП — {{ rm.name }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+  <a href="/orgs/{{ rm.org_id }}">{{ rm.org.name }}</a> /
+  <a href="/rm/{{ rm.id }}">{{ rm.name }}</a> / ЭМП
+</div>
+<div class="card">
+  <h2>Неионизирующие излучения (ЭМП)</h2>
+  <form method="post" action="/factor/emf/{{ rm.id }}/add">
+    <div class="form-row">
+      <div>
+        <label>Вид ЭМП</label>
+        <select name="emf_type">
+          <option value="esp">Электростатическое поле (ЭСП)</option>
+          <option value="pmp">Постоянное магнитное поле (ПМП)</option>
+          <option value="emp50">ЭП промышленной частоты 50 Гц</option>
+          <option value="emp50m">МП промышленной частоты 50 Гц</option>
+          <option value="rf01">ЭМИ РЧ 0,01–3 МГц</option>
+          <option value="rf03">ЭМИ РЧ 3–30 МГц</option>
+          <option value="rf30">ЭМИ РЧ 30–300 МГц</option>
+          <option value="rf300">ЭМИ РЧ 300 МГц–300 ГГц</option>
+          <option value="ufi">УФ-излучение</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Фактическое значение (в единицах нормирования) *</label>
+        <input type="number" name="fact_value" step="any" min="0" required>
+      </div>
+      <div>
+        <label>ПДУ (в тех же единицах) *</label>
+        <input type="number" name="pdu_value" step="any" min="0.001" required>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    <a href="/rm/{{ rm.id }}" class="btn btn-secondary">← Назад</a>
+  </form>
+</div>
+{% if items %}
+<div class="card">
+  <table>
+    <thead><tr><th>Вид ЭМП</th><th>Факт.</th><th>ПДУ</th><th>Кратность</th><th>Класс УТ</th><th></th></tr></thead>
+    <tbody>
+    {% for m in items %}
+    <tr>
+      <td>{{ m.emf_type }}</td>
+      <td>{{ m.fact_value }}</td>
+      <td>{{ m.pdu_value }}</td>
+      <td>{{ '%.2f'|format(m.fact_value / m.pdu_value) }}</td>
+      <td><span class="kut-{{ m.kut }}">{{ {2:'2',31:'3.1',32:'3.2',33:'3.3',34:'3.4',4:'4'}[m.kut] if m.kut else '—' }}</span></td>
+      <td>
+        <form method="post" action="/factor/emf/{{ rm.id }}/delete/{{ m.id }}">
+          <button class="btn btn-danger" style="font-size:11px">✕</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

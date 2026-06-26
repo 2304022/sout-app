@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Напряжённость труда — {{ rm.name }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+  <a href="/orgs/{{ rm.org_id }}">{{ rm.org.name }}</a> /
+  <a href="/rm/{{ rm.id }}">{{ rm.name }}</a> / Напряжённость трудового процесса
+</div>
+<div class="card">
+  <h2>Напряжённость трудового процесса</h2>
+  <form method="post" action="/factor/intensity/{{ rm.id }}/save">
+
+    <h4 style="margin-bottom:4px">Интеллектуальные нагрузки</h4>
+    <label>Уровень интеллектуальной нагрузки</label>
+    <select name="intellectual_load">
+      <option value="1" {{ 'selected' if not item or item.intellectual_load==1 else '' }}>1 — Простые задания (инструкция)</option>
+      <option value="2" {{ 'selected' if item and item.intellectual_load==2 else '' }}>2 — Несколько операций, последовательность</option>
+      <option value="3" {{ 'selected' if item and item.intellectual_load==3 else '' }}>3 — Сложные задачи, алгоритм, оценка</option>
+      <option value="4" {{ 'selected' if item and item.intellectual_load==4 else '' }}>4 — Эвристическая деятельность (творчество)</option>
+    </select>
+
+    <h4 style="margin-bottom:4px">Сенсорные нагрузки</h4>
+    <div class="form-row">
+      <div>
+        <label>Плотность сигналов и сообщений, ед./час</label>
+        <input type="number" name="signal_density" min="0"
+               value="{{ item.signal_density if item and item.signal_density else '' }}">
+      </div>
+      <div>
+        <label>Число объектов одновременного наблюдения</label>
+        <input type="number" name="watch_objects" min="0"
+               value="{{ item.watch_objects if item and item.watch_objects else '' }}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Работа с оптическими приборами, % смены</label>
+        <input type="number" name="optic_pct" step="0.1" min="0" max="100"
+               value="{{ item.optic_pct if item and item.optic_pct else '' }}">
+      </div>
+    </div>
+
+    <h4 style="margin-bottom:4px">Эмоциональные нагрузки</h4>
+    <select name="emotional_load">
+      <option value="1" {{ 'selected' if not item or item.emotional_load==1 else '' }}>1 — Несёт ответственность только за себя</option>
+      <option value="2" {{ 'selected' if item and item.emotional_load==2 else '' }}>2 — Ответственность за функциональное качество работы</option>
+      <option value="3" {{ 'selected' if item and item.emotional_load==3 else '' }}>3 — Ответственность за материальные ценности / безопасность группы</option>
+      <option value="4" {{ 'selected' if item and item.emotional_load==4 else '' }}>4 — Ответственность за безопасность жизни других</option>
+    </select>
+
+    <h4 style="margin-bottom:4px">Монотонность нагрузок</h4>
+    <div class="form-row">
+      <div>
+        <label>Число элементов в простой операции (монотонность)</label>
+        <input type="number" name="mono_elements" min="0"
+               value="{{ item.mono_elements if item and item.mono_elements else '' }}">
+      </div>
+      <div>
+        <label>Пассивное наблюдение за техпроцессом, % смены</label>
+        <input type="number" name="passive_watch_pct" step="0.1" min="0" max="100"
+               value="{{ item.passive_watch_pct if item and item.passive_watch_pct else '' }}">
+      </div>
+    </div>
+
+    <br>
+    <button type="submit" class="btn btn-primary">Сохранить и рассчитать</button>
+    <a href="/rm/{{ rm.id }}" class="btn btn-secondary">← Назад</a>
+  </form>
+
+  {% if item and item.kut %}
+  <div style="margin-top:16px;font-size:16px">
+    Класс условий труда: <span class="kut-{{ item.kut }}">
+      <strong>{{ {1:'1',2:'2',31:'3.1',32:'3.2'}[item.kut] if item.kut in [1,2,31,32] else item.kut }}</strong>
+    </span>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

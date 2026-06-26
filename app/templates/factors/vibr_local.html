@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Вибрация локальная — {{ rm.name }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+  <a href="/orgs/{{ rm.org_id }}">{{ rm.org.name }}</a> /
+  <a href="/rm/{{ rm.id }}">{{ rm.name }}</a> / Вибрация локальная
+</div>
+<div class="card">
+  <h2>Вибрация локальная</h2>
+  <p style="color:#555;font-size:13px">ПДУ: 126 дБ (корректированный виброускорение)</p>
+  <form method="post" action="/factor/vibr_local/{{ rm.id }}/add">
+    <label>Корректированный уровень виброускорения, дБ *</label>
+    <input type="number" name="corr_level_db" step="0.1" required style="max-width:200px">
+    <br><br>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    <a href="/rm/{{ rm.id }}" class="btn btn-secondary">← Назад</a>
+  </form>
+  <div style="margin-top:12px;font-size:12px;color:#777">
+    ≤126 → 2; 126–129 → 3.1; 129–132 → 3.2; 132–135 → 3.3; 135–138 → 3.4; &gt;138 → 4
+  </div>
+</div>
+{% if items %}
+<div class="card">
+  <table>
+    <thead><tr><th>Уровень, дБ</th><th>Класс УТ</th><th></th></tr></thead>
+    <tbody>
+    {% for m in items %}
+    <tr>
+      <td>{{ m.corr_level_db }}</td>
+      <td><span class="kut-{{ m.kut }}">{{ {2:'2',31:'3.1',32:'3.2',33:'3.3',34:'3.4',4:'4'}[m.kut] if m.kut else '—' }}</span></td>
+      <td>
+        <form method="post" action="/factor/vibr_local/{{ rm.id }}/delete/{{ m.id }}">
+          <button class="btn btn-danger" style="font-size:11px">✕</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

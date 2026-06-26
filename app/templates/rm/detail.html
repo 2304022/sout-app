@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}{{ rm.name }} — СОУТ{% endblock %}
+
+{% macro kut_badge(k) %}
+{% if k %}
+<span class="kut-{{ k }}">{{ {1:'1',2:'2',31:'3.1',32:'3.2',33:'3.3',34:'3.4',4:'4'}[k] }}</span>
+{% else %}<span style="color:#aaa">—</span>{% endif %}
+{% endmacro %}
+
+{% block content %}
+<div class="card">
+  <div class="breadcrumb">
+    <a href="/orgs/">Организации</a> /
+    <a href="/orgs/{{ rm.org_id }}">{{ rm.org.name }}</a> /
+    {{ rm.name }}
+  </div>
+  <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+    <div>
+      <h2>{{ rm.name }}</h2>
+      {% if rm.podr %}<p style="margin:0;color:#555">Подразделение: {{ rm.podr }}</p>{% endif %}
+      {% if rm.profession %}<p style="margin:2px 0;color:#555">Профессия: {{ rm.profession }}</p>{% endif %}
+      <p style="margin:2px 0;color:#555">Работников: {{ rm.num_workers }}, смена: {{ rm.shift_hours }} ч</p>
+    </div>
+    <div style="text-align:right">
+      <a href="/rm/{{ rm.id }}/edit" class="btn btn-secondary">Редактировать</a>
+      <div style="margin-top:12px; font-size:14px">
+        <strong>Итоговый класс УТ:</strong>
+        {% if rm.summary and rm.summary.kut_final %}
+          {% set k = rm.summary.kut_final %}
+          <span class="kut-{{ k }}" style="font-size:22px">
+            {{ {1:'1',2:'2',31:'3.1',32:'3.2',33:'3.3',34:'3.4',4:'4'}[k] }}
+          </span>
+        {% else %}<span style="color:#aaa">не рассчитан</span>{% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Факторы производственной среды</h3>
+  <div class="factor-grid">
+    {% set factors = [
+      ('chemical',     'Химический',           rm.summary.kut_chemical if rm.summary else None),
+      ('apfd',         'АПФД',                 rm.summary.kut_apfd if rm.summary else None),
+      ('noise',        'Шум',                  rm.summary.kut_noise if rm.summary else None),
+      ('vibr_local',   'Вибрация локальная',   rm.summary.kut_vibr_local if rm.summary else None),
+      ('vibr_general', 'Вибрация общая',       rm.summary.kut_vibr_general if rm.summary else None),
+      ('infrasound',   'Инфразвук',            rm.summary.kut_infrasound if rm.summary else None),
+      ('ultrasound',   'Ультразвук',           rm.summary.kut_ultrasound if rm.summary else None),
+      ('microclimate', 'Микроклимат',          rm.summary.kut_microclimate if rm.summary else None),
+      ('lighting',     'Световая среда',       rm.summary.kut_lighting if rm.summary else None),
+      ('emf',          'ЭМП',                  rm.summary.kut_emf if rm.summary else None),
+      ('radiation',    'Ионизирующее излуч.',  rm.summary.kut_radiation if rm.summary else None),
+      ('heaviness',    'Тяжесть труда',        rm.summary.kut_heaviness if rm.summary else None),
+      ('intensity',    'Напряжённость труда',  rm.summary.kut_intensity if rm.summary else None),
+    ] %}
+    {% for key, label, kut in factors %}
+    <div class="factor-card">
+      <a href="/factor/{{ key }}/{{ rm.id }}">{{ label }}</a>
+      <div class="kut-badge">Класс: {{ kut_badge(kut) }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

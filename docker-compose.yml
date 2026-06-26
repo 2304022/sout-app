@@ -1,0 +1,11 @@
+services:
+  sout:
+    build: .
+    ports:
+      - "5680:5680"
+    volumes:
+      - sout_data:/data
+    restart: unless-stopped
+
+volumes:
+  sout_data:

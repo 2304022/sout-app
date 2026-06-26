@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Световая среда — {{ rm.name }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+  <a href="/orgs/{{ rm.org_id }}">{{ rm.org.name }}</a> /
+  <a href="/rm/{{ rm.id }}">{{ rm.name }}</a> / Световая среда
+</div>
+<div class="card">
+  <h2>Световая среда (освещённость)</h2>
+  <p style="font-size:13px;color:#555">Е ≥ Ен → класс 2; 0,5Ен ≤ Е &lt; Ен → 3.1; Е &lt; 0,5Ен → 3.2</p>
+  <form method="post" action="/factor/lighting/{{ rm.id }}/add">
+    <div class="form-row">
+      <div>
+        <label>Фактическая освещённость, лк *</label>
+        <input type="number" name="e_fact" step="0.1" min="0" required>
+      </div>
+      <div>
+        <label>Нормативная освещённость Ен, лк *</label>
+        <input type="number" name="e_norm" step="0.1" min="1" required>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    <a href="/rm/{{ rm.id }}" class="btn btn-secondary">← Назад</a>
+  </form>
+</div>
+{% if items %}
+<div class="card">
+  <table>
+    <thead><tr><th>Еф, лк</th><th>Ен, лк</th><th>Еф/Ен</th><th>Класс УТ</th><th></th></tr></thead>
+    <tbody>
+    {% for m in items %}
+    <tr>
+      <td>{{ m.e_fact }}</td>
+      <td>{{ m.e_norm }}</td>
+      <td>{{ '%.2f'|format(m.e_fact / m.e_norm) }}</td>
+      <td><span class="kut-{{ m.kut }}">{{ {2:'2',31:'3.1',32:'3.2'}[m.kut] if m.kut else '—' }}</span></td>
+      <td>
+        <form method="post" action="/factor/lighting/{{ rm.id }}/delete/{{ m.id }}">
+          <button class="btn btn-danger" style="font-size:11px">✕</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

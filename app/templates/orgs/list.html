@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Организации — СОУТ{% endblock %}
+{% block content %}
+<div class="card">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <h2>Организации</h2>
+    <a href="/orgs/new" class="btn btn-primary">+ Добавить организацию</a>
+  </div>
+  {% if orgs %}
+  <table>
+    <thead><tr><th>#</th><th>Наименование</th><th>ИНН</th><th>Рабочих мест</th><th></th></tr></thead>
+    <tbody>
+    {% for org in orgs %}
+    <tr>
+      <td>{{ org.id }}</td>
+      <td><a href="/orgs/{{ org.id }}">{{ org.name }}</a></td>
+      <td>{{ org.inn or '—' }}</td>
+      <td>{{ org.workplaces|length }}</td>
+      <td>
+        <a href="/orgs/{{ org.id }}/edit" class="btn btn-secondary" style="font-size:12px">Ред.</a>
+        <form method="post" action="/orgs/{{ org.id }}/delete" style="display:inline"
+              onsubmit="return confirm('Удалить организацию?')">
+          <button type="submit" class="btn btn-danger" style="font-size:12px">Удалить</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p style="color:#888">Организаций пока нет. Добавьте первую.</p>
+  {% endif %}
+</div>
+{% endblock %}

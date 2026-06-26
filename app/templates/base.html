@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}СОУТ{% endblock %}</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; margin: 0; background: #f5f5f5; color: #222; }
+    nav { background: #1a5276; color: #fff; padding: 10px 20px; }
+    nav a { color: #aed6f1; text-decoration: none; margin-right: 16px; }
+    nav a:hover { color: #fff; }
+    .container { max-width: 1100px; margin: 20px auto; padding: 0 16px; }
+    h1, h2, h3 { margin-top: 0; }
+    .card { background: #fff; border-radius: 6px; padding: 20px; margin-bottom: 16px;
+            box-shadow: 0 1px 4px rgba(0,0,0,.12); }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 7px 10px; text-align: left; }
+    th { background: #eaf2ff; }
+    tr:hover { background: #f9f9f9; }
+    .btn { display: inline-block; padding: 6px 14px; border-radius: 4px;
+           border: none; cursor: pointer; font-size: 14px; text-decoration: none; }
+    .btn-primary { background: #1a5276; color: #fff; }
+    .btn-primary:hover { background: #154360; }
+    .btn-danger  { background: #c0392b; color: #fff; }
+    .btn-danger:hover { background: #96281b; }
+    .btn-secondary { background: #aaa; color: #fff; }
+    form { display: contents; }
+    input[type=text], input[type=number], select, textarea {
+      padding: 5px 8px; border: 1px solid #ccc; border-radius: 4px; width: 100%; margin-bottom: 4px; }
+    label { font-size: 13px; color: #555; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .kut-1  { color: #1e8449; font-weight: bold; }
+    .kut-2  { color: #27ae60; font-weight: bold; }
+    .kut-31 { color: #f39c12; font-weight: bold; }
+    .kut-32 { color: #e67e22; font-weight: bold; }
+    .kut-33 { color: #d35400; font-weight: bold; }
+    .kut-34 { color: #c0392b; font-weight: bold; }
+    .kut-4  { color: #7b241c; font-weight: bold; }
+    .breadcrumb { font-size: 13px; color: #888; margin-bottom: 12px; }
+    .breadcrumb a { color: #1a5276; }
+    .factor-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 10px; }
+    .factor-card { background: #eaf2ff; border-radius: 5px; padding: 10px 14px; }
+    .factor-card a { text-decoration: none; color: #1a5276; font-weight: bold; }
+    .factor-card .kut-badge { font-size: 12px; margin-top: 4px; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/orgs/">Организации</a>
+  <span style="color:#7fb3d3">| СОУТ — Специальная оценка условий труда</span>
+</nav>
+<div class="container">
+  {% block content %}{% endblock %}
+</div>
+</body>
+</html>

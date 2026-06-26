@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Ультразвук — {{ rm.name }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+  <a href="/orgs/{{ rm.org_id }}">{{ rm.org.name }}</a> /
+  <a href="/rm/{{ rm.id }}">{{ rm.name }}</a> / Ультразвук воздушный
+</div>
+<div class="card">
+  <h2>Ультразвук воздушный</h2>
+  <form method="post" action="/factor/ultrasound/{{ rm.id }}/add">
+    <label>Превышение фактического уровня над ПДУ, дБ *</label>
+    <input type="number" name="excess_db" step="0.1" required style="max-width:200px">
+    <br><br>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    <a href="/rm/{{ rm.id }}" class="btn btn-secondary">← Назад</a>
+  </form>
+  <div style="margin-top:12px;font-size:12px;color:#777">
+    ≤0→2; 0–10→3.1; 10–20→3.2; 20–30→3.3; 30–40→3.4; &gt;40→4
+  </div>
+</div>
+{% if items %}
+<div class="card">
+  <table>
+    <thead><tr><th>Превышение ПДУ, дБ</th><th>Класс УТ</th><th></th></tr></thead>
+    <tbody>
+    {% for m in items %}
+    <tr>
+      <td>{{ m.excess_db }}</td>
+      <td><span class="kut-{{ m.kut }}">{{ {2:'2',31:'3.1',32:'3.2',33:'3.3',34:'3.4',4:'4'}[m.kut] if m.kut else '—' }}</span></td>
+      <td>
+        <form method="post" action="/factor/ultrasound/{{ rm.id }}/delete/{{ m.id }}">
+          <button class="btn btn-danger" style="font-size:11px">✕</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}
