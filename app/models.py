@@ -1,7 +1,46 @@
 from datetime import datetime
-from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, String, Text
+from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Index, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database import Base
+
+
+# ══════════════════════════════════════════════════════════════════════════
+# Справочные таблицы (наполняются из исходников при первом запуске)
+# ══════════════════════════════════════════════════════════════════════════
+
+class RefChemical(Base):
+    """Справочник химических веществ (из himia.mdb / dic_himia)."""
+    __tablename__ = "ref_chemicals"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    nomer: Mapped[str | None] = mapped_column(String(20))
+    name: Mapped[str] = mapped_column(String(500), nullable=False)
+    cas: Mapped[str | None] = mapped_column(String(30))
+    pdk_ss: Mapped[float | None] = mapped_column(Float)
+    pdk_max: Mapped[float | None] = mapped_column(Float)
+    danger_class: Mapped[int] = mapped_column(Integer, default=0)
+    is_carcinogen: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_allergen: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_irritant: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_directed: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_fibrogenic: Mapped[bool] = mapped_column(Boolean, default=False)
+    doc: Mapped[str | None] = mapped_column(String(200))
+    __table_args__ = (Index("ix_ref_chemicals_name", "name"),)
+
+
+class RefBioAgent(Base):
+    """Справочник биологических агентов (из biomats.xml)."""
+    __tablename__ = "ref_bio_agents"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(String(500), nullable=False)
+    pathogenicity_group: Mapped[int] = mapped_column(Integer, default=4)
+
+
+class RefDanger(Base):
+    """Справочник опасных производственных факторов (из dangers.mdb)."""
+    __tablename__ = "ref_dangers"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(String(300), nullable=False)
+    factor_type: Mapped[str | None] = mapped_column(String(50))
 
 
 class Organization(Base):

@@ -1,0 +1,97 @@
+[
+  {
+    "id": 1,
+    "caption": "Химический",
+    "ftype": "gig"
+  },
+  {
+    "id": 2,
+    "caption": "Биологический",
+    "ftype": "gig"
+  },
+  {
+    "id": 3,
+    "caption": "Аэрозоли ПФД",
+    "ftype": "gig"
+  },
+  {
+    "id": 4,
+    "caption": "Шум",
+    "ftype": "gig"
+  },
+  {
+    "id": 5,
+    "caption": "Инфразвук",
+    "ftype": "gig"
+  },
+  {
+    "id": 6,
+    "caption": "Ультразвук",
+    "ftype": "gig"
+  },
+  {
+    "id": 7,
+    "caption": "Вибрация общая",
+    "ftype": "gig"
+  },
+  {
+    "id": 8,
+    "caption": "Вибрация локальная",
+    "ftype": "gig"
+  },
+  {
+    "id": 9,
+    "caption": "ЭМП",
+    "ftype": "gig"
+  },
+  {
+    "id": 10,
+    "caption": "Ионизирующие излучения",
+    "ftype": "gig"
+  },
+  {
+    "id": 11,
+    "caption": "Микроклимат",
+    "ftype": "gig"
+  },
+  {
+    "id": 12,
+    "caption": "Освещение",
+    "ftype": "gig"
+  },
+  {
+    "id": 13,
+    "caption": "Тяжесть",
+    "ftype": "gen"
+  },
+  {
+    "id": 14,
+    "caption": "Напряженность",
+    "ftype": "gen"
+  },
+  {
+    "id": 15,
+    "caption": "Травмоопасность",
+    "ftype": "gen"
+  },
+  {
+    "id": 16,
+    "caption": "СИЗ",
+    "ftype": "gen"
+  },
+  {
+    "id": 25,
+    "caption": "Аэроионизация",
+    "ftype": "gig"
+  },
+  {
+    "id": 26,
+    "caption": "Ультрафиолетовое излучение",
+    "ftype": "gig"
+  },
+  {
+    "id": 41,
+    "caption": "Лазерное излучение",
+    "ftype": "gig"
+  }
+]

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Справочник химических веществ{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>Справочник химических веществ ({{ total }})</h2>
+  <form method="get" style="display:flex;gap:8px;margin-bottom:12px">
+    <input type="text" name="q" value="{{ q }}" placeholder="Поиск по названию..." style="max-width:400px">
+    <button type="submit" class="btn btn-primary">Найти</button>
+    {% if q %}<a href="/ref/chemicals" class="btn btn-secondary">Сбросить</a>{% endif %}
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>№</th><th>Название</th><th>CAS</th>
+        <th>ПДКсс</th><th>ПДКмакс</th><th>Кл.</th><th>Свойства</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for c in items %}
+    <tr>
+      <td style="color:#aaa;font-size:11px">{{ c.nomer }}</td>
+      <td>{{ c.name }}</td>
+      <td style="font-size:11px">{{ c.cas or '—' }}</td>
+      <td>{{ c.pdk_ss or '—' }}</td>
+      <td>{{ c.pdk_max or '—' }}</td>
+      <td>{{ c.danger_class or '—' }}</td>
+      <td style="font-size:11px">
+        {% if c.is_carcinogen %}<span title="Канцероген" style="color:#c0392b">К</span>{% endif %}
+        {% if c.is_allergen %}<span title="Аллерген" style="color:#8e44ad">А</span>{% endif %}
+        {% if c.is_irritant %}<span title="Раздражающее" style="color:#e67e22">Р</span>{% endif %}
+        {% if c.is_directed %}<span title="Остронаправленного действия" style="color:#2980b9">О</span>{% endif %}
+        {% if c.is_fibrogenic %}<span title="Фиброгенный" style="color:#27ae60">Ф</span>{% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if items|length == 200 %}<p style="color:#888;font-size:12px">Показаны первые 200 записей. Уточните запрос.</p>{% endif %}
+</div>
+{% endblock %}

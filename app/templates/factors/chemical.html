@@ -10,15 +10,18 @@
 
 <div class="card">
   <h2>Химический фактор</h2>
-  <form method="post" action="/factor/chemical/{{ rm.id }}/add">
+  <form method="post" action="/factor/chemical/{{ rm.id }}/add" id="chem-form">
     <div class="form-row">
-      <div>
+      <div style="position:relative">
         <label>Наименование вещества *</label>
-        <input type="text" name="substance_name" required>
+        <input type="text" name="substance_name" id="chem-name" required autocomplete="off"
+               placeholder="Начните вводить название...">
+        <div id="chem-suggest" style="display:none;position:absolute;z-index:99;background:#fff;
+             border:1px solid #ccc;border-radius:4px;width:100%;max-height:220px;overflow-y:auto;box-shadow:0 2px 8px rgba(0,0,0,.15)"></div>
       </div>
       <div>
         <label>Класс опасности</label>
-        <select name="danger_class">
+        <select name="danger_class" id="chem-class">
           <option value="1">1 (чрезвычайно опасные)</option>
           <option value="2">2 (высоко опасные)</option>
           <option value="3" selected>3 (умеренно опасные)</option>
@@ -59,6 +62,76 @@
     <a href="/rm/{{ rm.id }}" class="btn btn-secondary">← Назад к РМ</a>
   </form>
 </div>
+
+<script>
+(function() {
+  const inp = document.getElementById('chem-name');
+  const box = document.getElementById('chem-suggest');
+  const dc  = document.getElementById('chem-class');
+  let timer;
+
+  inp.addEventListener('input', function() {
+    clearTimeout(timer);
+    const q = inp.value.trim();
+    if (q.length < 2) { box.style.display = 'none'; return; }
+    timer = setTimeout(() => {
+      fetch('/api/chemicals?limit=20&q=' + encodeURIComponent(q))
+        .then(r => r.json())
+        .then(data => {
+          if (!data.length) { box.style.display = 'none'; return; }
+          box.innerHTML = data.map(c => {
+            const props = [
+              c.is_carcinogen ? '<b style="color:#c0392b">К</b>' : '',
+              c.is_allergen   ? '<b style="color:#8e44ad">А</b>' : '',
+              c.is_irritant   ? '<b style="color:#e67e22">Р</b>' : '',
+              c.is_directed   ? '<b style="color:#2980b9">О</b>' : '',
+            ].filter(Boolean).join(' ');
+            return `<div class="sug-item" data-json='${JSON.stringify(c)}'
+                      style="padding:6px 10px;cursor:pointer;font-size:13px;border-bottom:1px solid #eee">
+                      ${c.name}
+                      <span style="font-size:11px;color:#888;margin-left:6px">
+                        кл.${c.danger_class || '?'} ПДКсс=${c.pdk_ss ?? '—'} ПДКмакс=${c.pdk_max ?? '—'} ${props}
+                      </span>
+                    </div>`;
+          }).join('');
+          box.style.display = 'block';
+          box.querySelectorAll('.sug-item').forEach(el => {
+            el.addEventListener('mouseenter', () => el.style.background = '#eaf2ff');
+            el.addEventListener('mouseleave', () => el.style.background = '');
+            el.addEventListener('click', () => {
+              const c = JSON.parse(el.dataset.json);
+              inp.value = c.name;
+              if (c.danger_class) {
+                dc.value = c.danger_class;
+              }
+              // fill PDK fields
+              const f = (name, val) => {
+                const el2 = document.querySelector('[name="' + name + '"]');
+                if (el2 && val != null) el2.value = val;
+              };
+              f('pdk_ss',  c.pdk_ss);
+              f('pdk_max', c.pdk_max);
+              // set checkboxes
+              const setChk = (name, val) => {
+                const el2 = document.querySelector('[name="' + name + '"]');
+                if (el2) el2.checked = val;
+              };
+              setChk('is_carcinogen',   c.is_carcinogen);
+              setChk('is_allergen_high',c.is_allergen);
+              setChk('is_irritant',     c.is_irritant);
+              setChk('is_directed',     c.is_directed);
+              box.style.display = 'none';
+            });
+          });
+        });
+    }, 250);
+  });
+
+  document.addEventListener('click', e => {
+    if (!box.contains(e.target) && e.target !== inp) box.style.display = 'none';
+  });
+})();
+</script>
 
 {% if items %}
 <div class="card">

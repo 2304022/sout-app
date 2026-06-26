@@ -1,0 +1,1802 @@
+[
+  {
+    "id": 1,
+    "name": "Absidia spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 2,
+    "name": "Acanthamoeba spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 3,
+    "name": "Acremonium spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 4,
+    "name": "Actinomyces albus",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 5,
+    "name": "Adenoviridae: аденовирусы всех типов",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 6,
+    "name": "Aerobacter aerogenes",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 7,
+    "name": "Alternaria spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 8,
+    "name": "Ancylostoma duodenale",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 9,
+    "name": "Anisakis spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 10,
+    "name": "Aphanoascus fulvescens (анаморфа - Chrysosporium)",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 11,
+    "name": "Apophysomyces elegans",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 12,
+    "name": "Arenaviridae: вирусы Ласса,2, Хунин,2, Мачупо,2, Себиа,2, Гуанарито",
+    "pathogenicity_group": 1
+  },
+  {
+    "id": 13,
+    "name": "Arenaviridae: вирусы лимфоцитарного хориоменингита,2, Такарибе,2, Пичинде",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 14,
+    "name": "Askaris lumbricoides",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 15,
+    "name": "Askaris suum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 16,
+    "name": "Aspergillus flavus",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 17,
+    "name": "Aspergillus fumigatus",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 18,
+    "name": "Aspergillus spp. (кроме Aspergillus flavus,2, Aspergillus fumigatus,2, Aspergillus terreus)",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 19,
+    "name": "Aspergillus terreus",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 20,
+    "name": "Aureobasidium pullulans",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 21,
+    "name": "Babesia caucasica",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 22,
+    "name": "Bacillus anthracis",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 23,
+    "name": "Bacillus cereus",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 24,
+    "name": "Bacteroides spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 25,
+    "name": "Balantidium coli",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 26,
+    "name": "Basidiobolus spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 27,
+    "name": "Beavueria bassiana",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 28,
+    "name": "Blastocystis hominis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 29,
+    "name": "Blastomyces dermatitidis",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 30,
+    "name": "Bordetella bronchiseptica",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 31,
+    "name": "Bordetella parapertussis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 32,
+    "name": "Bordetella pertussis",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 33,
+    "name": "Borrelia recurrentis",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 34,
+    "name": "Borrelia spp",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 35,
+    "name": "Botryomyces caespitosus",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 36,
+    "name": "Branchamella catarralis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 37,
+    "name": "Brucella abortus 1",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 38,
+    "name": "Brucella melitensis",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 39,
+    "name": "Brucella melitensis biovar Abortus",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 40,
+    "name": "Brucella melitensis biovar Canis",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 41,
+    "name": "Brucella melitensis biovar Neotomae",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 42,
+    "name": "Brucella melitensis biovar Ovis",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 43,
+    "name": "Brucella melitensis biovar Suis",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 44,
+    "name": "Bunyaviridae,2, Род Bunyavirus: комплекс C-вирусы Апеу,2, Мадрид,2, Орибока,2, Осса,2, Рестан и др.",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 45,
+    "name": "Bunyaviridae,2, Род Bunyavirus: Комплекс Калифорнийского энцефалита,2, Ла Кросс,2, Джеймстаун каньон,2, зайцев-беляков,2, Инко,2, Тягиня",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 46,
+    "name": "Burkholderia cepacia",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 47,
+    "name": "Burkholderia mallei",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 48,
+    "name": "Burkholderia pseudomallei",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 49,
+    "name": "Burkholderia thailandensis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 50,
+    "name": "Caliciviridae: вирус Норфолк",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 51,
+    "name": "Campylobacter fetus",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 52,
+    "name": "Campylobacter jejuni",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 53,
+    "name": "Campylobacter spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 54,
+    "name": "Candida albicans",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 55,
+    "name": "Candida crusei",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 56,
+    "name": "Candida glabrata",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 57,
+    "name": "Candida spp. (кроме Candida albicans,2, Candida glabrata,2, Candida crusei,2, Candida tropicalis)",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 58,
+    "name": "Candida tropicalis",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 59,
+    "name": "Chaetomium spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 60,
+    "name": "Chlamydia trachomatis",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 61,
+    "name": "Chlamydophila pneumoniae",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 62,
+    "name": "Chlamydophila psittaci",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 63,
+    "name": "Citrobacter spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 64,
+    "name": "Cladophialophora bantiana",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 65,
+    "name": "Cladophialophora spp. (кроме Cladophialophora bantiana)",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 66,
+    "name": "Clonorchis sinensis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 67,
+    "name": "Clostridium bifermentans",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 68,
+    "name": "Clostridium botulinum",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 69,
+    "name": "Clostridium histolyticum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 70,
+    "name": "Clostridium novyi",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 71,
+    "name": "Clostridium perfringens",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 72,
+    "name": "Clostridium septicum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 73,
+    "name": "Clostridium tetani",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 74,
+    "name": "Coccidioides immitis Coccidioides posadasii",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 75,
+    "name": "Cokeromyces recurvatus",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 76,
+    "name": "Conidiobolus spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 77,
+    "name": "Coronaviridae: вирус SARS",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 78,
+    "name": "Coronaviridae: коронавирусы человека",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 79,
+    "name": "Corynebacterium diphtheria",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 80,
+    "name": "Coxiella burnetii",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 81,
+    "name": "Cryptococcus neoformans",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 82,
+    "name": "Cryptococcus spp. (кроме Cryptococcus neoformans)",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 83,
+    "name": "Cryptosporidium parvum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 84,
+    "name": "Cunnunghmella bertholletiae",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 85,
+    "name": "Curvularia spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 86,
+    "name": "Cyclospora cayetanensis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 87,
+    "name": "Demodex folliculorum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 88,
+    "name": "Dicrocoelium lanceatum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 89,
+    "name": "Dioctophyme renale",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 90,
+    "name": "Diphyllobotrium dendriticum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 91,
+    "name": "Diphyllobotrium latum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 92,
+    "name": "Diphyllobotrium luxi",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 93,
+    "name": "Dipylidium caninum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 94,
+    "name": "Dirofilaria immitis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 95,
+    "name": "Dirofilaria repens",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 96,
+    "name": "Dracunculus medinensis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 97,
+    "name": "E.canis",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 98,
+    "name": "E.chaffeensis",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 99,
+    "name": "Echinococcus granulosus",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 100,
+    "name": "Echinococcus multilocularis",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 101,
+    "name": "Ehrlichia sennetsu",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 102,
+    "name": "Eikinella corrodens",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 103,
+    "name": "Emmonsia spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 104,
+    "name": "Entamoeba hystolytica",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 105,
+    "name": "Enterobius vermicularis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 106,
+    "name": "Enterococcus faecalis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 107,
+    "name": "Enterococcus faecium",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 108,
+    "name": "Epidermophyton floccosum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 109,
+    "name": "Erysipelothrix rhusiopathiae",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 110,
+    "name": "Escherichia coli",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 111,
+    "name": "Escherichia coli О157:H7,2, О104:Н4 и другие серотипы - продуценты веротоксина",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 112,
+    "name": "Eubacterium endocarditidis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 113,
+    "name": "Eubacterium lentum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 114,
+    "name": "Eubacterium ventricosum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 115,
+    "name": "Exophiala spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 116,
+    "name": "Fasciola gigantica",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 117,
+    "name": "Fasciola hepatica",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 118,
+    "name": "Fasciolopsis buski",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 119,
+    "name": "Filoviridae: вирусы Марбург и Эбола",
+    "pathogenicity_group": 1
+  },
+  {
+    "id": 120,
+    "name": "Flaviviridae: Болезни леса Киассанур,2, Омской геморрагической лихорадки (ОГЛ)",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 121,
+    "name": "Flaviviridae: Вирус гепатита C",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 122,
+    "name": "Flaviviridae: вирусы комплекса клещевого энцефалита (КЭ),2, Алма-Арасан,2, Апои,2, Лангат,2, Негиши,2, Повассан,2, Шотландского энцефаломиелита овец",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 123,
+    "name": "Flaviviridae: вирусы комплекса японского энцефалита (ЯЭ),2, Западного Нила,2, Ильеус,2, Росио,2, Сент-Луис (энцефалиты),2, Усуту,2, (энцефалит),2, долины Муррея,2, Карши,2, Кунжин,2, Сепик,2, Вессельсборн",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 124,
+    "name": "Flaviviridae: Желтой лихорадки",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 125,
+    "name": "Flaviviridae: Зика,2, Риобраво,2, Денге,2, Сокулук",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 126,
+    "name": "Flavobacterium meningosepticum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 127,
+    "name": "Fonsecaea spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 128,
+    "name": "Francisella tularensis",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 129,
+    "name": "Fusarium spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 130,
+    "name": "Geotrichum spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 131,
+    "name": "Graphium eumorphum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 132,
+    "name": "Gymnoascus dankalensis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 133,
+    "name": "Haemophilus influenza",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 134,
+    "name": "Hafnia alvei",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 135,
+    "name": "Helicobacter pylori",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 136,
+    "name": "Hepadnaviridae: вирусы гепатита B",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 137,
+    "name": "Herpesviridae: вирус герпеса 6 типа (HBLv- HHv6)",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 138,
+    "name": "Herpesviridae: вирус цитомегалии",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 139,
+    "name": "Herpesviridae: вирус Эпштейн-Барра",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 140,
+    "name": "Herpesviridae: вирусы простого герпеса I и II типов",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 141,
+    "name": "Herpesviridae: герпесвирус зостор-ветрянки",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 142,
+    "name": "Herpesviridae: обезьяний вирус B",
+    "pathogenicity_group": 1
+  },
+  {
+    "id": 143,
+    "name": "Histoplasma capsulatum var.capsulatum u duboisii",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 144,
+    "name": "Histoplasma falciminosum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 145,
+    "name": "Hoptaea werneckii",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 146,
+    "name": "Hymenolepis diminuta",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 147,
+    "name": "Hymenolepis nana",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 148,
+    "name": "Isospora belli",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 149,
+    "name": "Klebsiella ozaenae",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 150,
+    "name": "Klebsiella pneumonia",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 151,
+    "name": "Klebsiella rhinoscleromatis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 152,
+    "name": "Lacazia loboi",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 153,
+    "name": "Lamblia intestinalis (Giardia lamblia)",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 154,
+    "name": "Legionella pneumophila",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 155,
+    "name": "Leishmania donovani",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 156,
+    "name": "Leishmania major",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 157,
+    "name": "Leishmania tropica",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 158,
+    "name": "Leptosphaeria spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 159,
+    "name": "Leptospira interrogans",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 160,
+    "name": "Listeria monocytogenes",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 161,
+    "name": "Loa loa",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 162,
+    "name": "Madurella spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 163,
+    "name": "Malassezia spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 164,
+    "name": "Methagonimus jokogowai",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 165,
+    "name": "Micoplasma genitalium",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 166,
+    "name": "Micoplasma hominis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 167,
+    "name": "Micoplasma pneumoniae",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 168,
+    "name": "Micoplasma urealyticum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 169,
+    "name": "Microascus spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 170,
+    "name": "Microsporum spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 171,
+    "name": "Mortierella wolfii",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 172,
+    "name": "Mucor spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 173,
+    "name": "Multiceps multiceps",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 174,
+    "name": "Mycobacterium avium",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 175,
+    "name": "Mycobacterium bovis",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 176,
+    "name": "Mycobacterium leprae",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 177,
+    "name": "Mycobacterium spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 178,
+    "name": "Mycobacterium tuberculosis",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 179,
+    "name": "Naegleria spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 180,
+    "name": "Nanophyetes schikhobalowi",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 181,
+    "name": "Nattrassia mangiferae (Scytalidium spp.)",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 182,
+    "name": "Necator americanus",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 183,
+    "name": "Neisseria gonorrhoeae",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 184,
+    "name": "Neisseria meningitides",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 185,
+    "name": "Neotestudina rosatii",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 186,
+    "name": "Nocardia asteroids",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 187,
+    "name": "Nocardia brasiliensis",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 188,
+    "name": "Nodaviridae: вирусы гепатитов D (дельта) и E",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 189,
+    "name": "Nonphotochromogens",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 190,
+    "name": "Ochroconis spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 191,
+    "name": "Onychocola spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 192,
+    "name": "Opisthorchis felineus",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 193,
+    "name": "Opisthorchis viverini",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 194,
+    "name": "Ornithonyssus bacoty",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 195,
+    "name": "Orthomyxoviridae: вирусы гриппа A,2, B и C",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 196,
+    "name": "Paecilomyces spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 197,
+    "name": "Paracoccidioides brasiliensis",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 198,
+    "name": "Paragonimus westermani",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 199,
+    "name": "Paramyxoviridae: вирус кори",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 200,
+    "name": "Paramyxoviridae: вирус Ньюкаслской болезни",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 201,
+    "name": "Paramyxoviridae: вирус эпидемического паротита",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 202,
+    "name": "Paramyxoviridae: вирусы парагриппа человека 1-4 типа",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 203,
+    "name": "Paramyxoviridae: респираторно-синцитиальный вирус (РС-вирус)",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 204,
+    "name": "Pasteurella multocida",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 205,
+    "name": "Pediculus capitis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 206,
+    "name": "Pediculus vestimenti",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 207,
+    "name": "Penicillium spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 208,
+    "name": "Penicillum marneffei",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 209,
+    "name": "Pentatrichomonas (Trichomonas) hominis",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 210,
+    "name": "Phaeoacremonium spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 211,
+    "name": "Phialemonium spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 212,
+    "name": "Phialophora spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 213,
+    "name": "Phoma spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 214,
+    "name": "Photochromogens",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 215,
+    "name": "Phthirus pubis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 216,
+    "name": "Picornaviridae,2, Род Aphtovirus: вирус ящура",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 217,
+    "name": "Picornaviridae,2, Род Cardiovirus: вирус энцефаломиокардита и вирус Менго",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 218,
+    "name": "Picornaviridae,2, Род Enterovirus вирусы ECHO",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 219,
+    "name": "Picornaviridae,2, Род Enterovirus вирусы Коксаки группы A и B",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 220,
+    "name": "Picornaviridae,2, Род Enterovirus энтеровирусы - типы 68-71",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 221,
+    "name": "Picornaviridae,2, Род Enterovirus: вирус острого геморрагического конъюнктивита (АНС)",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 222,
+    "name": "Picornaviridae,2, Род Enterovirus: вирусы гепатитов А и Е",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 223,
+    "name": "Picornaviridae,2, Род Enterovirus: вирусы полиомиелита - дикие штаммы",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 224,
+    "name": "Picornaviridae,2, Род Rinovirus: риновирусы человека 130 типов",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 225,
+    "name": "Piedraia hortae",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 226,
+    "name": "Plasmodium falciparum",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 227,
+    "name": "Plasmodium malariae",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 228,
+    "name": "Plasmodium ovale",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 229,
+    "name": "Plasmodium vivax",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 230,
+    "name": "Pneumocystis carinii",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 231,
+    "name": "Poxviridae: вирус контагиозного моллюска",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 232,
+    "name": "Poxviridae: вирус оспы коров",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 233,
+    "name": "Poxviridae: вирус узелков доильщиц",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 234,
+    "name": "Poxviridae: вирус эктромелии",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 235,
+    "name": "Poxviridae: вирусы Тана и Яба",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 236,
+    "name": "Poxviridae: орфвирус",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 237,
+    "name": "Poxviridae: Род Ortopoxvirine вирус натуральной оспы (Variola)",
+    "pathogenicity_group": 1
+  },
+  {
+    "id": 238,
+    "name": "Poxviridae: Род Ortopoxvirine вирус оспы обезьян (Monkeypox)",
+    "pathogenicity_group": 1
+  },
+  {
+    "id": 239,
+    "name": "Proactinomyces israelii",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 240,
+    "name": "Propionibacterium avidum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 241,
+    "name": "Proteus spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 242,
+    "name": "Pseudamphistomum truncatum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 243,
+    "name": "Pseudoallecheria boydii (Scedosporium apiospermum)",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 244,
+    "name": "Pseudochaetosphaeronema larense",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 245,
+    "name": "Pseudomonas aeruginosa",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 246,
+    "name": "Pyrenochaeta spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 247,
+    "name": "Pythium insidiosum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 248,
+    "name": "Ramichloridium mackenzei",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 249,
+    "name": "Ramichloridium spp. (кроме Ramichloridium mackenzei)",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 250,
+    "name": "Rapid growers",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 251,
+    "name": "Reoviridae,2, Род Orbivirus: вирусы Кемерово,2, колорадской клещевой лихорадки,2, Синего языка овец,2, Чангвинола,2, Орунго и др.",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 252,
+    "name": "Reoviridae,2, Род Reovirus: реовирусы человека",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 253,
+    "name": "Reoviridae,2, Род Rotavirus: ротавирусы человека,2, вирус диареи телят Небраски (NCDV)",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 254,
+    "name": "Retroviridae: вирус Т-клеточного лейкоза человека (HTLV)",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 255,
+    "name": "Retroviridae: вирусы иммунодефицита человека (ВИЧ-1,2, ВИЧ-2)",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 256,
+    "name": "Rhabdoviridae,2, Род Lyssavirus: вирус уличного бешенства",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 257,
+    "name": "Rhabdoviridae,2, Род Lyssavirus: Дикования,2, Лагос-бат",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 258,
+    "name": "Rhabdoviride,2, Род Vesiculovirus: вирус везикулярного стоматита",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 259,
+    "name": "Rhinocladiella aquaspersa",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 260,
+    "name": "Rhinosporidium seeberi",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 261,
+    "name": "Rhizomucor spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 262,
+    "name": "Rhizopus spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 263,
+    "name": "Rickettsia akari",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 264,
+    "name": "Rickettsia australis",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 265,
+    "name": "Rickettsia conorii",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 266,
+    "name": "Rickettsia japonica",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 267,
+    "name": "Rickettsia prowazeki",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 268,
+    "name": "Rickettsia rickettsii",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 269,
+    "name": "Rickettsia sharoni",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 270,
+    "name": "Rickettsia sibirica",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 271,
+    "name": "Rickettsia sp.now?",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 272,
+    "name": "Rickettsia sp.now?",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 273,
+    "name": "Rickettsia sp.now?",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 274,
+    "name": "Rickettsia tsutsugamushi",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 275,
+    "name": "Rickettsia typhi",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 276,
+    "name": "Saksenaea vasiformis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 277,
+    "name": "Salmonella paratyphi A",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 278,
+    "name": "Salmonella paratyphi B",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 279,
+    "name": "Salmonella spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 280,
+    "name": "Salmonella typhi",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 281,
+    "name": "Sarcocystis hominis (bovihominis)",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 282,
+    "name": "Sarcocystis suihominis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 283,
+    "name": "Sarcoptes scabiei",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 284,
+    "name": "Scedosporium profilicans",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 285,
+    "name": "Schistosoma haematobium",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 286,
+    "name": "Schistosoma intercalatum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 287,
+    "name": "Schistosoma japonicum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 288,
+    "name": "Schistosoma mansoni",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 289,
+    "name": "Scopulariopsis spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 290,
+    "name": "Scotochromogens",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 291,
+    "name": "Serratia marcescens",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 292,
+    "name": "Shigella spp",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 293,
+    "name": "Shigella spp",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 294,
+    "name": "Sparganum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 295,
+    "name": "Sporothrix schenkii",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 296,
+    "name": "Staphylococcus spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 297,
+    "name": "Streptococcus spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 298,
+    "name": "Strongyloides stercoralis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 299,
+    "name": "Syncephalastpum racemosum",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 300,
+    "name": "Taenia solium",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 301,
+    "name": "Taeniarinchus saginatus",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 302,
+    "name": "Togaviridae,2, Род Rubivirus: вирус краснухи",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 303,
+    "name": "Togaviridae: вирусы лихорадок Семлики,2, Бибару,2, Эвергладес,2, Чикунгунья,2,Ньонг-Ньонг,2, Карельской,2, Синдбис,2, реки Росс,2, Майяро,2, Мукамбо,2, Сагиума",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 304,
+    "name": "Togaviridae: вирусы лошадиных инцефаломиелитов (Венесуэльский ВНЭЛ,2, Восточный ВЭЛ,2, Западный ЗЭЛ)",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 305,
+    "name": "Toxocara canis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 306,
+    "name": "Toxocara leonina",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 307,
+    "name": "Toxocara mystax",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 308,
+    "name": "Toxoplasma gondii",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 309,
+    "name": "Trichinella spp.",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 310,
+    "name": "Trichocephalus trichiurus",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 311,
+    "name": "Trichoderma spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 312,
+    "name": "Trichomonas vaginalis",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 313,
+    "name": "Trichophyton spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 314,
+    "name": "Trichosporon",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 315,
+    "name": "Trichosporon",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 316,
+    "name": "Trypanosoma cruzi",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 317,
+    "name": "Trypanosoma gambiense",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 318,
+    "name": "Trypanosoma rhodesiense",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 319,
+    "name": "Ulocladium spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 320,
+    "name": "Unconventional agents: Агент CJD-возбудитель болезни Крейцфельда-Якоба",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 321,
+    "name": "Unconventional agents: Возбудители медленных нейроинфекций = подострых губчатых энцефалопатий (Prion Diseases) Куру",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 322,
+    "name": "Unconventional agents: Возбудитель губчатой энцефалопатии крупного рогатого скота",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 323,
+    "name": "Unconventional agents: Возбудитель оливопонтоцеребеллярной атрофии человека",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 324,
+    "name": "Unconventional agents: Возбудитель трансмиссивной губчатой энцефалопатии человека",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 325,
+    "name": "Unconventional agents: Возбудитель энцефалопатии норок",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 326,
+    "name": "Unconventional agents: Скрепи",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 327,
+    "name": "Unconventional agents: Хроническая изнуряющая болезнь копытных",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 328,
+    "name": "Vibrio alginolyticus",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 329,
+    "name": "Vibrio cholerae non O1 (O139) не токсигенный",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 330,
+    "name": "Vibrio cholerae non O1 (O139) токсигенный",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 331,
+    "name": "Vibrio cholerae O1 не токсигенный",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 332,
+    "name": "Vibrio cholerae O1 токсигенный",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 333,
+    "name": "Vibrio fluvialis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 334,
+    "name": "Vibrio mimicus",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 335,
+    "name": "Vibrio parahaemolyticus",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 336,
+    "name": "Vibrio spp.",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 337,
+    "name": "Vibrio vulnificus",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 338,
+    "name": "Wangiella dermatitidis",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 339,
+    "name": "Yersinia enterocolitica",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 340,
+    "name": "Yersinia pestis",
+    "pathogenicity_group": 1
+  },
+  {
+    "id": 341,
+    "name": "Yersinia pseudotuberculosis",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 342,
+    "name": "Ботулинические токсины всех типов",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 343,
+    "name": "Дифтерийный токсин",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 344,
+    "name": "Клещи домашней пыли",
+    "pathogenicity_group": 4
+  },
+  {
+    "id": 345,
+    "name": "Микотоксины",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 346,
+    "name": "Патогенные микроорганизмы при обслуживании пассажирских вагонов проводниками",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 347,
+    "name": "Патогенные микроорганизмы. Возбудители инфекционных заболеваний. Работники патоморфологических отделений, прозекторских, моргов.",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 348,
+    "name": "Патогенные микроорганизмы. Особо опасные инфекции: проведение работ в ветеринарных учреждениях и подразделениях, специализированных хозяйств для больных животных с возбудителями особо опасных инфекционных заболеваний.",
+    "pathogenicity_group": 1
+  },
+  {
+    "id": 349,
+    "name": "Патогенные микроорганизмы. Особо опасные инфекции: проведение работ в ветеринарных учреждениях и подразделениях, специализированных хозяйствах для больных животных при контакте с животными больными особо опасными инфекционными заболеваниями.",
+    "pathogenicity_group": 1
+  },
+  {
+    "id": 350,
+    "name": "Патогенные микроорганизмы. Особо опасные инфекции: проведение работ в специализированных медицинских учреждениях при контакте с больными особо опасными инфекционными заболеваниями.",
+    "pathogenicity_group": 1
+  },
+  {
+    "id": 351,
+    "name": "Патогенные микроорганизмы. Особо опасные инфекции: проведение работ в специализированных медицинских учреждениях с возбудителями особо опасных инфекционных заболеваний.",
+    "pathogenicity_group": 1
+  },
+  {
+    "id": 352,
+    "name": "Патогенные микроорганизмы. Работники имеющие контакт с возбудителями инфекционных заболеваний.",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 353,
+    "name": "Род Hantavirus: вирусы Хантаан,2, Сеул,2, Пуумала,2, Чили,2, Аидо и др.",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 354,
+    "name": "Род Nairovirus: болезни овец Найроби,2, Ганджам",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 355,
+    "name": "Род Nairovirus: вирус Крымской геморрагической лихорадки-Конго",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 356,
+    "name": "Род Nairovirus: Дугбе",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 357,
+    "name": "Род Phlebovirus: вирусы москитных лихорадок Сицилии,2, Неаполя,2, Рифт-валли,2, Тоскана и др.",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 358,
+    "name": "Столбнячный токсин",
+    "pathogenicity_group": 2
+  },
+  {
+    "id": 359,
+    "name": "Стрептококковый токсин группы А",
+    "pathogenicity_group": 3
+  },
+  {
+    "id": 360,
+    "name": "Холерный токсин",
+    "pathogenicity_group": 2
+  }
+]
