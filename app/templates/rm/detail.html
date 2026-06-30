@@ -53,6 +53,10 @@
       ('radiation',    'Ионизирующее излуч.',  rm.summary.kut_radiation if rm.summary else None),
       ('heaviness',    'Тяжесть труда',        rm.summary.kut_heaviness if rm.summary else None),
       ('intensity',    'Напряжённость труда',  rm.summary.kut_intensity if rm.summary else None),
+      ('bio',          'Биологический',        rm.summary.kut_bio if rm.summary else None),
+      ('laser',        'Лазерное излучение',   rm.summary.kut_laser if rm.summary else None),
+      ('uv',           'УФ-излучение',         rm.summary.kut_uv if rm.summary else None),
+      ('aeroion',      'Аэроионный состав',    rm.summary.kut_aeroion if rm.summary else None),
     ] %}
     {% for key, label, kut in factors %}
     <div class="factor-card">

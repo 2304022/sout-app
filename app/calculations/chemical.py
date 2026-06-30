@@ -4,6 +4,8 @@
 """
 import math
 
+from app.calculations.utils import kut_max
+
 
 def classify_chemical(
     danger_class: int,
@@ -141,7 +143,7 @@ def classify_chemical(
     if not kut_vals:
         return 2
 
-    return max(kut_vals)
+    return kut_max(kut_vals)
 
 
 def classify_chemical_mixture(substances: list[dict]) -> int:

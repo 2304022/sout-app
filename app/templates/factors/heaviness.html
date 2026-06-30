@@ -90,6 +90,46 @@
                value="{{ item.moves_horizontal_km if item and item.moves_horizontal_km else '' }}">
       </div>
     </div>
+    <div class="form-row">
+      <div>
+        <label>Вертикальные перемещения, км/смену</label>
+        <input type="number" name="moves_vertical_km" step="0.1" min="0"
+               value="{{ item.moves_vertical_km if item and item.moves_vertical_km else '' }}">
+      </div>
+    </div>
+
+    <h4 style="margin-bottom:4px">Статическая нагрузка, кгс·с/смену</h4>
+    <div class="form-row">
+      <div>
+        <label>При локальной нагрузке (1–2 пальца)</label>
+        <input type="number" name="static_local" step="any" min="0"
+               value="{{ item.static_local if item and item.static_local else '' }}">
+      </div>
+      <div>
+        <label>При региональной нагрузке (рука/плечо)</label>
+        <input type="number" name="static_regional" step="any" min="0"
+               value="{{ item.static_regional if item and item.static_regional else '' }}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Общая — одной рукой</label>
+        <input type="number" name="static_one_hand" step="any" min="0"
+               value="{{ item.static_one_hand if item and item.static_one_hand else '' }}">
+      </div>
+      <div>
+        <label>Общая — двумя руками</label>
+        <input type="number" name="static_two_hands" step="any" min="0"
+               value="{{ item.static_two_hands if item and item.static_two_hands else '' }}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Общая — с участием корпуса и ног</label>
+        <input type="number" name="static_body_legs" step="any" min="0"
+               value="{{ item.static_body_legs if item and item.static_body_legs else '' }}">
+      </div>
+    </div>
 
     <br>
     <button type="submit" class="btn btn-primary">Сохранить и рассчитать</button>

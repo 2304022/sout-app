@@ -7,7 +7,7 @@
 3. Если 3 и более фактора с классом 3.2 — итог повышается до 3.3.
 4. Аналогично для 3.3 → 3.4.
 """
-from app.calculations.utils import KUT_ORDER
+from app.calculations.utils import kut_max
 
 
 def classify_summary(factor_kuts: list[int | None]) -> int:
@@ -19,7 +19,7 @@ def classify_summary(factor_kuts: list[int | None]) -> int:
     if not valid:
         return 1
 
-    result = max(valid)
+    result = kut_max(valid)
 
     # Правило эскалации: 3 и более факторов с одним подклассом
     for base_kut, next_kut in [(31, 32), (32, 33), (33, 34)]:

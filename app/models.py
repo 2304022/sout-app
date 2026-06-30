@@ -43,6 +43,43 @@ class RefDanger(Base):
     factor_type: Mapped[str | None] = mapped_column(String(50))
 
 
+class RefBioProducer(Base):
+    """Микроорганизмы-продуценты с ПДК (из bio.mdb / data2021, ГН 2.2.6.3686-21)."""
+    __tablename__ = "ref_bio_producers"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    nomer: Mapped[str | None] = mapped_column(String(20))
+    name: Mapped[str] = mapped_column(String(500), nullable=False)
+    purpose: Mapped[str | None] = mapped_column(String(300))
+    pdk_ss: Mapped[float | None] = mapped_column(Float)
+    danger_class: Mapped[int] = mapped_column(Integer, default=0)
+    is_allergen: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_irritant: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_directed: Mapped[bool] = mapped_column(Boolean, default=False)
+    doc: Mapped[str | None] = mapped_column(String(100))
+    __table_args__ = (Index("ix_ref_bio_producers_name", "name"),)
+
+
+class RefEffSum(Base):
+    """Группы суммирования химических веществ (из himia.mdb / eff_sum2024)."""
+    __tablename__ = "ref_eff_sum"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    src: Mapped[str | None] = mapped_column(String(100))
+    punkt: Mapped[str | None] = mapped_column(String(20))
+    co_mats: Mapped[int] = mapped_column(Integer, default=0)
+    chem_ids: Mapped[str] = mapped_column(Text)   # JSON-array хранится как строка
+    kkd: Mapped[float | None] = mapped_column(Float)
+    sum_type: Mapped[int] = mapped_column(Integer, default=0)
+    descr: Mapped[str | None] = mapped_column(Text)
+
+
+class RefFgisSynonym(Base):
+    """Синонимы веществ в ФГИС СОУТ (из himia.mdb / fgis_synonyms)."""
+    __tablename__ = "ref_fgis_synonyms"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    default_id: Mapped[int] = mapped_column(Integer, index=True)
+    synonym_id: Mapped[int] = mapped_column(Integer, index=True)
+
+
 class Organization(Base):
     __tablename__ = "organizations"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -77,6 +114,10 @@ class Workplace(Base):
     radiations: Mapped[list["MeasRadiation"]] = relationship(back_populates="rm", cascade="all, delete-orphan")
     heavinesses: Mapped[list["MeasHeaviness"]] = relationship(back_populates="rm", cascade="all, delete-orphan")
     intensities: Mapped[list["MeasIntensity"]] = relationship(back_populates="rm", cascade="all, delete-orphan")
+    bios: Mapped[list["MeasBio"]] = relationship(back_populates="rm", cascade="all, delete-orphan")
+    lasers: Mapped[list["MeasLaser"]] = relationship(back_populates="rm", cascade="all, delete-orphan")
+    uvs: Mapped[list["MeasUV"]] = relationship(back_populates="rm", cascade="all, delete-orphan")
+    aeroions: Mapped[list["MeasAeroion"]] = relationship(back_populates="rm", cascade="all, delete-orphan")
     summary: Mapped["Summary | None"] = relationship(back_populates="rm", cascade="all, delete-orphan")
 
 
@@ -235,6 +276,13 @@ class MeasHeaviness(Base):
     bends_count: Mapped[int | None] = mapped_column(Integer)
     # перемещения км/смену
     moves_horizontal_km: Mapped[float | None] = mapped_column(Float)
+    moves_vertical_km: Mapped[float | None] = mapped_column(Float)
+    # статическая нагрузка кгс·с
+    static_local: Mapped[float | None] = mapped_column(Float)
+    static_regional: Mapped[float | None] = mapped_column(Float)
+    static_one_hand: Mapped[float | None] = mapped_column(Float)
+    static_two_hands: Mapped[float | None] = mapped_column(Float)
+    static_body_legs: Mapped[float | None] = mapped_column(Float)
     kut: Mapped[int | None] = mapped_column(Integer)
     rm: Mapped["Workplace"] = relationship(back_populates="heavinesses")
 
@@ -243,19 +291,83 @@ class MeasIntensity(Base):
     __tablename__ = "meas_intensity"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     rm_id: Mapped[int] = mapped_column(ForeignKey("workplaces.id"))
-    # интеллектуальные нагрузки
-    intellectual_load: Mapped[int] = mapped_column(Integer, default=1)  # 1-4
-    # сенсорные нагрузки
-    signal_density: Mapped[int | None] = mapped_column(Integer)     # сигналов/час
-    watch_objects: Mapped[int | None] = mapped_column(Integer)      # объектов наблюдения
-    optic_pct: Mapped[float | None] = mapped_column(Float)          # работа с оптикой % смены
-    # эмоциональные
-    emotional_load: Mapped[int] = mapped_column(Integer, default=1)  # 1-4
-    # монотонность
-    mono_elements: Mapped[int | None] = mapped_column(Integer)       # кол. элементов простой операции
-    passive_watch_pct: Mapped[float | None] = mapped_column(Float)   # пассивное наблюдение % смены
+    # 1. Интеллектуальные нагрузки (1-4)
+    intellectual_load: Mapped[int] = mapped_column(Integer, default=1)   # 1.1
+    perception_load: Mapped[int] = mapped_column(Integer, default=1)     # 1.2
+    work_distribution: Mapped[int] = mapped_column(Integer, default=1)   # 1.3
+    work_nature: Mapped[int] = mapped_column(Integer, default=1)         # 1.4
+    # 2. Сенсорные нагрузки
+    concentration_pct: Mapped[float | None] = mapped_column(Float)       # 2.1 % смены
+    signal_density: Mapped[int | None] = mapped_column(Integer)          # 2.2 сигналов/час
+    watch_objects: Mapped[int | None] = mapped_column(Integer)           # 2.3 объектов
+    optic_pct: Mapped[float | None] = mapped_column(Float)               # 2.5 % смены
+    voice_hours_week: Mapped[float | None] = mapped_column(Float)        # 2.8 часов/нед
+    # 3. Эмоциональные нагрузки
+    emotional_load: Mapped[int] = mapped_column(Integer, default=1)      # 3.1 (1-4)
+    life_risk: Mapped[bool] = mapped_column(Boolean, default=False)      # 3.2
+    others_safety: Mapped[bool] = mapped_column(Boolean, default=False)  # 3.3
+    conflicts_per_shift: Mapped[int | None] = mapped_column(Integer)     # 3.4
+    # 4. Монотонность нагрузок
+    mono_elements: Mapped[int | None] = mapped_column(Integer)           # 4.1
+    operation_duration_sec: Mapped[int | None] = mapped_column(Integer)  # 4.2
+    active_actions_pct: Mapped[float | None] = mapped_column(Float)      # 4.3 % смены
+    passive_watch_pct: Mapped[float | None] = mapped_column(Float)       # 4.4 % смены
+    # 5. Режим работы
+    shift_duration_hours: Mapped[float | None] = mapped_column(Float)    # 5.1
+    shift_type: Mapped[int] = mapped_column(Integer, default=1)          # 5.2 (1-4)
+    break_adequacy: Mapped[int] = mapped_column(Integer, default=1)      # 5.3 (1-4)
     kut: Mapped[int | None] = mapped_column(Integer)
     rm: Mapped["Workplace"] = relationship(back_populates="intensities")
+
+
+class MeasBio(Base):
+    """Биологический фактор — Прил. №9."""
+    __tablename__ = "meas_bio"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    rm_id: Mapped[int] = mapped_column(ForeignKey("workplaces.id"))
+    name: Mapped[str] = mapped_column(String(500))
+    bio_type: Mapped[str] = mapped_column(String(10), default="producer")  # producer/pathogen
+    # для продуцентов
+    pdk: Mapped[float | None] = mapped_column(Float)
+    c_fact: Mapped[float | None] = mapped_column(Float)
+    # для патогенов
+    pathogenicity_group: Mapped[int | None] = mapped_column(Integer)  # 1-4
+    kut: Mapped[int | None] = mapped_column(Integer)
+    rm: Mapped["Workplace"] = relationship(back_populates="bios")
+
+
+class MeasLaser(Base):
+    """Лазерное излучение — Прил. №18."""
+    __tablename__ = "meas_laser"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    rm_id: Mapped[int] = mapped_column(ForeignKey("workplaces.id"))
+    fact_value: Mapped[float] = mapped_column(Float)
+    pdu1: Mapped[float] = mapped_column(Float)   # ПДУ (меньший норматив)
+    pdu2: Mapped[float] = mapped_column(Float)   # ПДУ максимальный
+    kut: Mapped[int | None] = mapped_column(Integer)
+    rm: Mapped["Workplace"] = relationship(back_populates="lasers")
+
+
+class MeasUV(Base):
+    """Ультрафиолетовое излучение — Прил. №18."""
+    __tablename__ = "meas_uv"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    rm_id: Mapped[int] = mapped_column(ForeignKey("workplaces.id"))
+    fact_value: Mapped[float] = mapped_column(Float)   # Вт/м²
+    dii: Mapped[float] = mapped_column(Float)          # допустимая интенсивность
+    kut: Mapped[int | None] = mapped_column(Integer)
+    rm: Mapped["Workplace"] = relationship(back_populates="uvs")
+
+
+class MeasAeroion(Base):
+    """Аэроионный состав воздуха — СанПиН 2.2.4.1294-03."""
+    __tablename__ = "meas_aeroion"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    rm_id: Mapped[int] = mapped_column(ForeignKey("workplaces.id"))
+    ro_pos: Mapped[float] = mapped_column(Float)   # ρ⁺ ион/см³
+    ro_neg: Mapped[float] = mapped_column(Float)   # ρ⁻ ион/см³
+    kut: Mapped[int | None] = mapped_column(Integer)
+    rm: Mapped["Workplace"] = relationship(back_populates="aeroions")
 
 
 class Summary(Base):
@@ -275,6 +387,10 @@ class Summary(Base):
     kut_radiation: Mapped[int | None] = mapped_column(Integer)
     kut_heaviness: Mapped[int | None] = mapped_column(Integer)
     kut_intensity: Mapped[int | None] = mapped_column(Integer)
+    kut_bio: Mapped[int | None] = mapped_column(Integer)
+    kut_laser: Mapped[int | None] = mapped_column(Integer)
+    kut_uv: Mapped[int | None] = mapped_column(Integer)
+    kut_aeroion: Mapped[int | None] = mapped_column(Integer)
     kut_final: Mapped[int | None] = mapped_column(Integer)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     rm: Mapped["Workplace"] = relationship(back_populates="summary")

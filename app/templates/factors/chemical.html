@@ -70,60 +70,66 @@
   const dc  = document.getElementById('chem-class');
   let timer;
 
+  function renderSuggest(data) {
+    if (!data.length) { box.style.display = 'none'; return; }
+    box.innerHTML = data.map(c => {
+      const props = [
+        c.is_carcinogen ? '<b style="color:#c0392b">К</b>' : '',
+        c.is_allergen   ? '<b style="color:#8e44ad">А</b>' : '',
+        c.is_irritant   ? '<b style="color:#e67e22">Р</b>' : '',
+        c.is_directed   ? '<b style="color:#2980b9">О</b>' : '',
+        c.is_fibrogenic ? '<b style="color:#27ae60">Ф</b>' : '',
+      ].filter(Boolean).join(' ');
+      const badge = c.source === 'bio_producer'
+        ? '<span style="font-size:10px;background:#d5e8d4;color:#2d6a2d;border-radius:3px;padding:0 4px;margin-left:4px">продуцент</span>'
+        : '';
+      return `<div class="sug-item" data-json='${JSON.stringify(c)}'
+                style="padding:6px 10px;cursor:pointer;font-size:13px;border-bottom:1px solid #eee">
+                ${c.name}${badge}
+                <span style="font-size:11px;color:#888;margin-left:6px">
+                  кл.${c.danger_class || '?'} ПДКсс=${c.pdk_ss ?? '—'} ПДКмакс=${c.pdk_max ?? '—'} ${props}
+                </span>
+              </div>`;
+    }).join('');
+    box.style.display = 'block';
+    box.querySelectorAll('.sug-item').forEach(el => {
+      el.addEventListener('mouseenter', () => el.style.background = '#eaf2ff');
+      el.addEventListener('mouseleave', () => el.style.background = '');
+      el.addEventListener('click', () => {
+        const c = JSON.parse(el.dataset.json);
+        inp.value = c.name;
+        if (c.danger_class) dc.value = c.danger_class;
+        const f = (name, val) => {
+          const el2 = document.querySelector('[name="' + name + '"]');
+          if (el2 && val != null) el2.value = val;
+        };
+        f('pdk_ss',  c.pdk_ss);
+        f('pdk_max', c.pdk_max);
+        const setChk = (name, val) => {
+          const el2 = document.querySelector('[name="' + name + '"]');
+          if (el2) el2.checked = !!val;
+        };
+        setChk('is_carcinogen',   c.is_carcinogen);
+        setChk('is_allergen_high',c.is_allergen);
+        setChk('is_irritant',     c.is_irritant);
+        setChk('is_directed',     c.is_directed);
+        box.style.display = 'none';
+      });
+    });
+  }
+
   inp.addEventListener('input', function() {
     clearTimeout(timer);
     const q = inp.value.trim();
     if (q.length < 2) { box.style.display = 'none'; return; }
     timer = setTimeout(() => {
-      fetch('/api/chemicals?limit=20&q=' + encodeURIComponent(q))
-        .then(r => r.json())
-        .then(data => {
-          if (!data.length) { box.style.display = 'none'; return; }
-          box.innerHTML = data.map(c => {
-            const props = [
-              c.is_carcinogen ? '<b style="color:#c0392b">К</b>' : '',
-              c.is_allergen   ? '<b style="color:#8e44ad">А</b>' : '',
-              c.is_irritant   ? '<b style="color:#e67e22">Р</b>' : '',
-              c.is_directed   ? '<b style="color:#2980b9">О</b>' : '',
-            ].filter(Boolean).join(' ');
-            return `<div class="sug-item" data-json='${JSON.stringify(c)}'
-                      style="padding:6px 10px;cursor:pointer;font-size:13px;border-bottom:1px solid #eee">
-                      ${c.name}
-                      <span style="font-size:11px;color:#888;margin-left:6px">
-                        кл.${c.danger_class || '?'} ПДКсс=${c.pdk_ss ?? '—'} ПДКмакс=${c.pdk_max ?? '—'} ${props}
-                      </span>
-                    </div>`;
-          }).join('');
-          box.style.display = 'block';
-          box.querySelectorAll('.sug-item').forEach(el => {
-            el.addEventListener('mouseenter', () => el.style.background = '#eaf2ff');
-            el.addEventListener('mouseleave', () => el.style.background = '');
-            el.addEventListener('click', () => {
-              const c = JSON.parse(el.dataset.json);
-              inp.value = c.name;
-              if (c.danger_class) {
-                dc.value = c.danger_class;
-              }
-              // fill PDK fields
-              const f = (name, val) => {
-                const el2 = document.querySelector('[name="' + name + '"]');
-                if (el2 && val != null) el2.value = val;
-              };
-              f('pdk_ss',  c.pdk_ss);
-              f('pdk_max', c.pdk_max);
-              // set checkboxes
-              const setChk = (name, val) => {
-                const el2 = document.querySelector('[name="' + name + '"]');
-                if (el2) el2.checked = val;
-              };
-              setChk('is_carcinogen',   c.is_carcinogen);
-              setChk('is_allergen_high',c.is_allergen);
-              setChk('is_irritant',     c.is_irritant);
-              setChk('is_directed',     c.is_directed);
-              box.style.display = 'none';
-            });
-          });
-        });
+      const enc = encodeURIComponent(q);
+      Promise.all([
+        fetch('/api/chemicals?limit=15&q=' + enc).then(r => r.json()),
+        fetch('/api/bio_producers?limit=5&q=' + enc).then(r => r.json()),
+      ]).then(([chems, prods]) => {
+        renderSuggest([...chems, ...prods]);
+      });
     }, 250);
   });
 

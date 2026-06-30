@@ -1,6 +1,7 @@
 """
 Ионизирующее излучение — Приложение №19 к Приказу №33н.
 """
+from app.calculations.utils import kut_max
 
 
 def classify_radiation(
@@ -42,4 +43,4 @@ def classify_radiation(
         kuts.append(classify_lens(lens_dose_msv))
     if skin_dose_msv is not None:
         kuts.append(classify_skin(skin_dose_msv))
-    return max(kuts)
+    return kut_max(kuts)

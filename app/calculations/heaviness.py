@@ -128,6 +128,66 @@ def _kut_moves_horiz(km: float) -> int:
     return 32
 
 
+def _kut_moves_vert(km: float) -> int:
+    if km < 1:   return 1
+    if km < 2.5: return 2
+    if km < 5:   return 31
+    return 32
+
+
+def _kut_static_local(value: float) -> int:
+    if value < 20000: return 1
+    if value < 40000: return 2
+    if value < 60000: return 31
+    return 32
+
+
+def _kut_static_regional(value: float) -> int:
+    if value < 10000: return 1
+    if value < 20000: return 2
+    if value < 30000: return 31
+    return 32
+
+
+def _kut_static_one_hand(value: float, sex: str) -> int:
+    if sex == "f":
+        if value < 11000: return 1
+        if value < 22000: return 2
+        if value < 42000: return 31
+        return 32
+    else:
+        if value < 18000: return 1
+        if value < 36000: return 2
+        if value < 70000: return 31
+        return 32
+
+
+def _kut_static_two_hands(value: float, sex: str) -> int:
+    if sex == "f":
+        if value < 22000:  return 1
+        if value < 42000:  return 2
+        if value < 84000:  return 31
+        return 32
+    else:
+        if value < 36000:  return 1
+        if value < 70000:  return 2
+        if value < 140000: return 31
+        return 32
+
+
+def _kut_static_body_legs(value: float, sex: str) -> int:
+    if sex == "f":
+        if value < 26000:  return 1
+        if value < 60000:  return 2
+        if value < 120000: return 31
+        return 32
+    else:
+        if value < 43000:  return 1
+        if value < 100000: return 2
+        if value < 200000: return 31
+        return 32
+
+
 def classify_heaviness(
     sex: str = "m",
     load_regional_1m: float | None = None,
@@ -141,6 +201,12 @@ def classify_heaviness(
     pose_awkward_pct: float | None = None,
     bends_count: int | None = None,
     moves_horizontal_km: float | None = None,
+    moves_vertical_km: float | None = None,
+    static_local: float | None = None,
+    static_regional: float | None = None,
+    static_one_hand: float | None = None,
+    static_two_hands: float | None = None,
+    static_body_legs: float | None = None,
 ) -> int:
     kuts = []
     if load_regional_1m is not None:
@@ -165,4 +231,16 @@ def classify_heaviness(
         kuts.append(_kut_bends(bends_count))
     if moves_horizontal_km is not None:
         kuts.append(_kut_moves_horiz(moves_horizontal_km))
+    if moves_vertical_km is not None:
+        kuts.append(_kut_moves_vert(moves_vertical_km))
+    if static_local is not None:
+        kuts.append(_kut_static_local(static_local))
+    if static_regional is not None:
+        kuts.append(_kut_static_regional(static_regional))
+    if static_one_hand is not None:
+        kuts.append(_kut_static_one_hand(static_one_hand, sex))
+    if static_two_hands is not None:
+        kuts.append(_kut_static_two_hands(static_two_hands, sex))
+    if static_body_legs is not None:
+        kuts.append(_kut_static_body_legs(static_body_legs, sex))
     return max(kuts) if kuts else 2

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}УФ-излучение — {{ rm.name }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+  <a href="/orgs/{{ rm.org_id }}">{{ rm.org.name }}</a> /
+  <a href="/rm/{{ rm.id }}">{{ rm.name }}</a> / Ультрафиолетовое излучение
+</div>
+<div class="card">
+  <h2>Ультрафиолетовое излучение (Прил. №18 к Приказу №33н)</h2>
+  <form method="post" action="/factor/uv/{{ rm.id }}/add">
+    <div class="form-row">
+      <div>
+        <label>ДИИ — допустимая интенсивность излучения, Вт/м² *</label>
+        <input type="number" name="dii" step="any" min="0" required>
+      </div>
+      <div>
+        <label>Фактическая интенсивность, Вт/м² *</label>
+        <input type="number" name="fact_value" step="any" min="0" required>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    <a href="/rm/{{ rm.id }}" class="btn btn-secondary">← Назад</a>
+  </form>
+  <div style="margin-top:12px;font-size:12px;color:#777">
+    ≤ДИИ → 2; &gt;ДИИ → 3.1 (работа допускается только с применением СИЗ)
+  </div>
+</div>
+
+{% if items %}
+<div class="card">
+  <table>
+    <thead><tr><th>Факт, Вт/м²</th><th>ДИИ, Вт/м²</th><th>Класс УТ</th><th></th></tr></thead>
+    <tbody>
+    {% for m in items %}
+    <tr>
+      <td>{{ m.fact_value }}</td>
+      <td>{{ m.dii }}</td>
+      <td><span class="kut-{{ m.kut }}">{{ {2:'2',31:'3.1',32:'3.2',33:'3.3',34:'3.4',4:'4'}[m.kut] if m.kut else '—' }}</span></td>
+      <td>
+        <form method="post" action="/factor/uv/{{ rm.id }}/delete/{{ m.id }}">
+          <button class="btn btn-danger" style="font-size:11px">✕</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

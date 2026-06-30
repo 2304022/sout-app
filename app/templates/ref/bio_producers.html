@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Микроорганизмы-продуценты{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>Микроорганизмы-продуценты (ГН 2.2.6.3686-21) — {{ total }}</h2>
+  <form method="get" style="display:flex;gap:8px;margin-bottom:12px">
+    <input type="text" name="q" value="{{ q }}" placeholder="Поиск по названию..." style="max-width:400px">
+    <button type="submit" class="btn btn-primary">Найти</button>
+    {% if q %}<a href="/ref/bio_producers" class="btn btn-secondary">Сбросить</a>{% endif %}
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>№</th><th>Название штамма</th><th>Назначение</th>
+        <th>ПДКсс мг/м³</th><th>Кл.</th><th>Свойства</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for p in items %}
+    <tr>
+      <td style="color:#aaa;font-size:11px">{{ p.nomer }}</td>
+      <td>{{ p.name }}</td>
+      <td style="font-size:12px;color:#555">{{ p.purpose or '—' }}</td>
+      <td>{{ p.pdk_ss or '—' }}</td>
+      <td>{{ p.danger_class or '—' }}</td>
+      <td style="font-size:11px">
+        {% if p.is_allergen %}<span title="Аллерген" style="color:#8e44ad">А</span>{% endif %}
+        {% if p.is_irritant %}<span title="Раздражающее" style="color:#e67e22">Р</span>{% endif %}
+        {% if p.is_directed %}<span title="Остронаправленного действия" style="color:#2980b9">О</span>{% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if items|length == 200 %}<p style="color:#888;font-size:12px">Показаны первые 200 записей. Уточните запрос.</p>{% endif %}
+</div>
+{% endblock %}

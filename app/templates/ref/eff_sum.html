@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Группы суммирования веществ{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>Группы суммирования химических веществ (СанПиН 1.2.3685-21, табл. 1.3)</h2>
+  <p style="color:#555;font-size:13px">
+    Вещества из одной группы действуют однонаправленно — их отношения к ПДК суммируются.
+    Если Σ (Cᵢ/ПДКᵢ) &gt; 1, класс условий труда определяется по суммарной нагрузке.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px">п.</th>
+        <th style="width:160px">Источник</th>
+        <th>Вещества в группе</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for row in rows %}
+    <tr>
+      <td style="color:#aaa;font-size:11px">{{ row.punkt }}</td>
+      <td style="font-size:11px;color:#777">{{ row.src }}</td>
+      <td style="font-size:12px">
+        {% for name in row.names %}
+          <span style="display:inline-block;background:#eaf2ff;border-radius:3px;padding:1px 6px;margin:2px">{{ name }}</span>
+        {% endfor %}
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

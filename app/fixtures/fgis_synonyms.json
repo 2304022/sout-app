@@ -1,0 +1,327 @@
+[
+  {
+    "id": 2,
+    "default_id": 2,
+    "synonym_id": 2
+  },
+  {
+    "id": 7,
+    "default_id": 28,
+    "synonym_id": 28
+  },
+  {
+    "id": 8,
+    "default_id": 28,
+    "synonym_id": 1312
+  },
+  {
+    "id": 9,
+    "default_id": 28,
+    "synonym_id": 169138
+  },
+  {
+    "id": 10,
+    "default_id": 1299,
+    "synonym_id": 1299
+  },
+  {
+    "id": 11,
+    "default_id": 1299,
+    "synonym_id": 308
+  },
+  {
+    "id": 12,
+    "default_id": 1299,
+    "synonym_id": 2551
+  },
+  {
+    "id": 13,
+    "default_id": 2483,
+    "synonym_id": 2483
+  },
+  {
+    "id": 14,
+    "default_id": 2483,
+    "synonym_id": 315
+  },
+  {
+    "id": 15,
+    "default_id": 1279,
+    "synonym_id": 1279
+  },
+  {
+    "id": 16,
+    "default_id": 1279,
+    "synonym_id": 39
+  },
+  {
+    "id": 17,
+    "default_id": 2493,
+    "synonym_id": 2493
+  },
+  {
+    "id": 18,
+    "default_id": 2493,
+    "synonym_id": 123423
+  },
+  {
+    "id": 19,
+    "default_id": 1272,
+    "synonym_id": 1272
+  },
+  {
+    "id": 20,
+    "default_id": 1272,
+    "synonym_id": 451
+  },
+  {
+    "id": 21,
+    "default_id": 2359,
+    "synonym_id": 2359
+  },
+  {
+    "id": 22,
+    "default_id": 2359,
+    "synonym_id": 124785
+  },
+  {
+    "id": 23,
+    "default_id": 2491,
+    "synonym_id": 2491
+  },
+  {
+    "id": 24,
+    "default_id": 2491,
+    "synonym_id": 902
+  },
+  {
+    "id": 25,
+    "default_id": 453,
+    "synonym_id": 453
+  },
+  {
+    "id": 26,
+    "default_id": 453,
+    "synonym_id": 2371
+  },
+  {
+    "id": 27,
+    "default_id": 453,
+    "synonym_id": 130365
+  },
+  {
+    "id": 28,
+    "default_id": 453,
+    "synonym_id": 813
+  },
+  {
+    "id": 29,
+    "default_id": 1290,
+    "synonym_id": 1290
+  },
+  {
+    "id": 30,
+    "default_id": 1290,
+    "synonym_id": 265
+  },
+  {
+    "id": 31,
+    "default_id": 2490,
+    "synonym_id": 2490
+  },
+  {
+    "id": 32,
+    "default_id": 2490,
+    "synonym_id": 1205
+  },
+  {
+    "id": 33,
+    "default_id": 105,
+    "synonym_id": 105
+  },
+  {
+    "id": 34,
+    "default_id": 105,
+    "synonym_id": 151278
+  },
+  {
+    "id": 35,
+    "default_id": 1322,
+    "synonym_id": 1322
+  },
+  {
+    "id": 36,
+    "default_id": 1322,
+    "synonym_id": 134208
+  },
+  {
+    "id": 37,
+    "default_id": 1267,
+    "synonym_id": 1267
+  },
+  {
+    "id": 38,
+    "default_id": 1267,
+    "synonym_id": 121966
+  },
+  {
+    "id": 39,
+    "default_id": 1287,
+    "synonym_id": 1287
+  },
+  {
+    "id": 40,
+    "default_id": 1287,
+    "synonym_id": 251
+  },
+  {
+    "id": 41,
+    "default_id": 1296,
+    "synonym_id": 1296
+  },
+  {
+    "id": 42,
+    "default_id": 1296,
+    "synonym_id": 134168
+  },
+  {
+    "id": 43,
+    "default_id": 2492,
+    "synonym_id": 2492
+  },
+  {
+    "id": 44,
+    "default_id": 2492,
+    "synonym_id": 390
+  },
+  {
+    "id": 45,
+    "default_id": 1305,
+    "synonym_id": 1305
+  },
+  {
+    "id": 46,
+    "default_id": 1305,
+    "synonym_id": 155491
+  },
+  {
+    "id": 47,
+    "default_id": 2469,
+    "synonym_id": 2469
+  },
+  {
+    "id": 48,
+    "default_id": 2469,
+    "synonym_id": 123178
+  },
+  {
+    "id": 49,
+    "default_id": 452,
+    "synonym_id": 452
+  },
+  {
+    "id": 50,
+    "default_id": 452,
+    "synonym_id": 131416
+  },
+  {
+    "id": 51,
+    "default_id": 2526,
+    "synonym_id": 2526
+  },
+  {
+    "id": 52,
+    "default_id": 2526,
+    "synonym_id": 130
+  },
+  {
+    "id": 53,
+    "default_id": 2526,
+    "synonym_id": 166180
+  },
+  {
+    "id": 54,
+    "default_id": 155,
+    "synonym_id": 155
+  },
+  {
+    "id": 55,
+    "default_id": 155,
+    "synonym_id": 138195
+  },
+  {
+    "id": 56,
+    "default_id": 155,
+    "synonym_id": 151804
+  },
+  {
+    "id": 57,
+    "default_id": 2930,
+    "synonym_id": 2930
+  },
+  {
+    "id": 58,
+    "default_id": 2930,
+    "synonym_id": 151303
+  },
+  {
+    "id": 59,
+    "default_id": 2750,
+    "synonym_id": 2750
+  },
+  {
+    "id": 60,
+    "default_id": 2750,
+    "synonym_id": 212
+  },
+  {
+    "id": 61,
+    "default_id": 2750,
+    "synonym_id": 122090
+  },
+  {
+    "id": 62,
+    "default_id": 2488,
+    "synonym_id": 2488
+  },
+  {
+    "id": 63,
+    "default_id": 2488,
+    "synonym_id": 123109
+  },
+  {
+    "id": 64,
+    "default_id": 2488,
+    "synonym_id": 122066
+  },
+  {
+    "id": 65,
+    "default_id": 2940,
+    "synonym_id": 2940
+  },
+  {
+    "id": 66,
+    "default_id": 2940,
+    "synonym_id": 122050
+  },
+  {
+    "id": 67,
+    "default_id": 593,
+    "synonym_id": 593
+  },
+  {
+    "id": 68,
+    "default_id": 593,
+    "synonym_id": 122076
+  },
+  {
+    "id": 69,
+    "default_id": 1274,
+    "synonym_id": 1274
+  },
+  {
+    "id": 70,
+    "default_id": 1274,
+    "synonym_id": 175884
+  }
+]

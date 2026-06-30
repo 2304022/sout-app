@@ -5,59 +5,176 @@
   <a href="/orgs/{{ rm.org_id }}">{{ rm.org.name }}</a> /
   <a href="/rm/{{ rm.id }}">{{ rm.name }}</a> / Напряжённость трудового процесса
 </div>
+
+{% macro sel(name, val, opts) %}
+<select name="{{ name }}">
+  {% for v, label in opts %}
+  <option value="{{ v }}" {{ 'selected' if item and item[name]==v else ('selected' if not item and loop.first else '') }}>{{ v }} — {{ label }}</option>
+  {% endfor %}
+</select>
+{% endmacro %}
+
 <div class="card">
-  <h2>Напряжённость трудового процесса</h2>
+  <h2>Напряжённость трудового процесса (Прил. 21 к Приказу №33н)</h2>
   <form method="post" action="/factor/intensity/{{ rm.id }}/save">
 
-    <h4 style="margin-bottom:4px">Интеллектуальные нагрузки</h4>
-    <label>Уровень интеллектуальной нагрузки</label>
-    <select name="intellectual_load">
-      <option value="1" {{ 'selected' if not item or item.intellectual_load==1 else '' }}>1 — Простые задания (инструкция)</option>
-      <option value="2" {{ 'selected' if item and item.intellectual_load==2 else '' }}>2 — Несколько операций, последовательность</option>
-      <option value="3" {{ 'selected' if item and item.intellectual_load==3 else '' }}>3 — Сложные задачи, алгоритм, оценка</option>
-      <option value="4" {{ 'selected' if item and item.intellectual_load==4 else '' }}>4 — Эвристическая деятельность (творчество)</option>
-    </select>
-
-    <h4 style="margin-bottom:4px">Сенсорные нагрузки</h4>
+    <h4>1. Интеллектуальные нагрузки</h4>
     <div class="form-row">
       <div>
-        <label>Плотность сигналов и сообщений, ед./час</label>
-        <input type="number" name="signal_density" min="0"
-               value="{{ item.signal_density if item and item.signal_density else '' }}">
+        <label>1.1. Содержание работы</label>
+        <select name="intellectual_load">
+          <option value="1" {{ 'selected' if not item or item.intellectual_load==1 }}>1 — Инструкция / простые задания</option>
+          <option value="2" {{ 'selected' if item and item.intellectual_load==2 }}>2 — Несколько операций по инструкции</option>
+          <option value="3" {{ 'selected' if item and item.intellectual_load==3 }}>3 — Сложные задачи с выбором алгоритма</option>
+          <option value="4" {{ 'selected' if item and item.intellectual_load==4 }}>4 — Эвристическая деятельность / руководство</option>
+        </select>
       </div>
       <div>
-        <label>Число объектов одновременного наблюдения</label>
-        <input type="number" name="watch_objects" min="0"
-               value="{{ item.watch_objects if item and item.watch_objects else '' }}">
+        <label>1.2. Восприятие сигналов и их оценка</label>
+        <select name="perception_load">
+          <option value="1" {{ 'selected' if not item or item.perception_load==1 }}>1 — Восприятие без коррекции действий</option>
+          <option value="2" {{ 'selected' if item and item.perception_load==2 }}>2 — Восприятие с последующей коррекцией</option>
+          <option value="3" {{ 'selected' if item and item.perception_load==3 }}>3 — Сопоставление факт/норма, оценка</option>
+          <option value="4" {{ 'selected' if item and item.perception_load==4 }}>4 — Комплексная оценка всей деятельности</option>
+        </select>
       </div>
     </div>
     <div class="form-row">
       <div>
-        <label>Работа с оптическими приборами, % смены</label>
+        <label>1.3. Распределение функций</label>
+        <select name="work_distribution">
+          <option value="1" {{ 'selected' if not item or item.work_distribution==1 }}>1 — Только обработка и выполнение</option>
+          <option value="2" {{ 'selected' if item and item.work_distribution==2 }}>2 — Выполнение и проверка</option>
+          <option value="3" {{ 'selected' if item and item.work_distribution==3 }}>3 — Обработка, проверка и контроль</option>
+          <option value="4" {{ 'selected' if item and item.work_distribution==4 }}>4 — Контроль + распределение заданий другим</option>
+        </select>
+      </div>
+      <div>
+        <label>1.4. Характер выполняемой работы</label>
+        <select name="work_nature">
+          <option value="1" {{ 'selected' if not item or item.work_nature==1 }}>1 — По индивидуальному плану</option>
+          <option value="2" {{ 'selected' if item and item.work_nature==2 }}>2 — По установленному графику с возможной коррекцией</option>
+          <option value="3" {{ 'selected' if item and item.work_nature==3 }}>3 — В условиях дефицита времени</option>
+          <option value="4" {{ 'selected' if item and item.work_nature==4 }}>4 — Дефицит времени и информации, высокая ответственность</option>
+        </select>
+      </div>
+    </div>
+
+    <h4>2. Сенсорные нагрузки</h4>
+    <div class="form-row">
+      <div>
+        <label>2.1. Длительность сосредоточенного наблюдения, % смены</label>
+        <input type="number" name="concentration_pct" step="0.1" min="0" max="100"
+               value="{{ item.concentration_pct if item and item.concentration_pct else '' }}">
+      </div>
+      <div>
+        <label>2.2. Плотность сигналов (световых, звуковых), ед./час</label>
+        <input type="number" name="signal_density" min="0"
+               value="{{ item.signal_density if item and item.signal_density else '' }}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>2.3. Число объектов одновременного наблюдения</label>
+        <input type="number" name="watch_objects" min="0"
+               value="{{ item.watch_objects if item and item.watch_objects else '' }}">
+      </div>
+      <div>
+        <label>2.5. Работа с оптическими приборами, % смены</label>
         <input type="number" name="optic_pct" step="0.1" min="0" max="100"
                value="{{ item.optic_pct if item and item.optic_pct else '' }}">
       </div>
     </div>
-
-    <h4 style="margin-bottom:4px">Эмоциональные нагрузки</h4>
-    <select name="emotional_load">
-      <option value="1" {{ 'selected' if not item or item.emotional_load==1 else '' }}>1 — Несёт ответственность только за себя</option>
-      <option value="2" {{ 'selected' if item and item.emotional_load==2 else '' }}>2 — Ответственность за функциональное качество работы</option>
-      <option value="3" {{ 'selected' if item and item.emotional_load==3 else '' }}>3 — Ответственность за материальные ценности / безопасность группы</option>
-      <option value="4" {{ 'selected' if item and item.emotional_load==4 else '' }}>4 — Ответственность за безопасность жизни других</option>
-    </select>
-
-    <h4 style="margin-bottom:4px">Монотонность нагрузок</h4>
     <div class="form-row">
       <div>
-        <label>Число элементов в простой операции (монотонность)</label>
+        <label>2.8. Нагрузка на голосовой аппарат, суммарных часов в неделю</label>
+        <input type="number" name="voice_hours_week" step="0.5" min="0"
+               value="{{ item.voice_hours_week if item and item.voice_hours_week else '' }}">
+      </div>
+    </div>
+
+    <h4>3. Эмоциональные нагрузки</h4>
+    <div class="form-row">
+      <div>
+        <label>3.1. Степень ответственности / значимость ошибки</label>
+        <select name="emotional_load">
+          <option value="1" {{ 'selected' if not item or item.emotional_load==1 }}>1 — Ответственность за отдельные элементы</option>
+          <option value="2" {{ 'selected' if item and item.emotional_load==2 }}>2 — Ответственность за качество вспомог. работ</option>
+          <option value="3" {{ 'selected' if item and item.emotional_load==3 }}>3 — Ответственность за качество основной работы</option>
+          <option value="4" {{ 'selected' if item and item.emotional_load==4 }}>4 — Ответственность за конечный продукт / безопасность</option>
+        </select>
+      </div>
+      <div>
+        <label>3.4. Конфликтных ситуаций за смену</label>
+        <input type="number" name="conflicts_per_shift" min="0"
+               value="{{ item.conflicts_per_shift if item and item.conflicts_per_shift is not none else '' }}">
+      </div>
+    </div>
+    <div style="display:flex;gap:24px;margin:8px 0">
+      <label>
+        <input type="checkbox" name="life_risk" value="true"
+               {{ 'checked' if item and item.life_risk }}>
+        3.2. Риск для собственной жизни вероятен
+      </label>
+      <label>
+        <input type="checkbox" name="others_safety" value="true"
+               {{ 'checked' if item and item.others_safety }}>
+        3.3. Ответственность за безопасность других лиц
+      </label>
+    </div>
+
+    <h4>4. Монотонность нагрузок</h4>
+    <div class="form-row">
+      <div>
+        <label>4.1. Число элементов в простой повторяющейся операции</label>
         <input type="number" name="mono_elements" min="0"
                value="{{ item.mono_elements if item and item.mono_elements else '' }}">
       </div>
       <div>
-        <label>Пассивное наблюдение за техпроцессом, % смены</label>
+        <label>4.2. Продолжительность простых заданий / операций, сек</label>
+        <input type="number" name="operation_duration_sec" min="0"
+               value="{{ item.operation_duration_sec if item and item.operation_duration_sec else '' }}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>4.3. Активные действия (остальное — наблюдение), % смены</label>
+        <input type="number" name="active_actions_pct" step="0.1" min="0" max="100"
+               value="{{ item.active_actions_pct if item and item.active_actions_pct else '' }}">
+      </div>
+      <div>
+        <label>4.4. Пассивное наблюдение за техпроцессом, % смены</label>
         <input type="number" name="passive_watch_pct" step="0.1" min="0" max="100"
                value="{{ item.passive_watch_pct if item and item.passive_watch_pct else '' }}">
+      </div>
+    </div>
+
+    <h4>5. Режим работы</h4>
+    <div class="form-row">
+      <div>
+        <label>5.1. Фактическая продолжительность рабочего дня, ч</label>
+        <input type="number" name="shift_duration_hours" step="0.5" min="0"
+               value="{{ item.shift_duration_hours if item and item.shift_duration_hours else '' }}">
+      </div>
+      <div>
+        <label>5.2. Сменность</label>
+        <select name="shift_type">
+          <option value="1" {{ 'selected' if not item or item.shift_type==1 }}>1 — Односменная (без ночных)</option>
+          <option value="2" {{ 'selected' if item and item.shift_type==2 }}>2 — Двухсменная (без ночных)</option>
+          <option value="3" {{ 'selected' if item and item.shift_type==3 }}>3 — Трёхсменная (с работой в ночное время)</option>
+          <option value="4" {{ 'selected' if item and item.shift_type==4 }}>4 — Нерегулярная сменность с ночной работой</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>5.3. Регламентированные перерывы</label>
+        <select name="break_adequacy">
+          <option value="1" {{ 'selected' if not item or item.break_adequacy==1 }}>1 — Регламентированы, достаточные (≥7% раб. времени)</option>
+          <option value="2" {{ 'selected' if item and item.break_adequacy==2 }}>2 — Регламентированы, недостаточные (3–7%)</option>
+          <option value="3" {{ 'selected' if item and item.break_adequacy==3 }}>3 — Не регламентированы и недостаточные (&lt;3%)</option>
+          <option value="4" {{ 'selected' if item and item.break_adequacy==4 }}>4 — Перерывы отсутствуют</option>
+        </select>
       </div>
     </div>
 

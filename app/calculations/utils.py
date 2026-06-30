@@ -16,6 +16,25 @@ KUT_LABELS = {
 KUT_ORDER = [1, 2, 31, 32, 33, 34, 4]
 
 
+def kut_severity(kut: int | None) -> int:
+    """Ранг тяжести класса (по KUT_ORDER). None → -1."""
+    if kut is None:
+        return -1
+    try:
+        return KUT_ORDER.index(kut)
+    except ValueError:
+        return -1
+
+
+def kut_max(kuts) -> int | None:
+    """Наиболее тяжёлый класс из списка (учитывает, что 4 хуже 3.4).
+    None-значения игнорируются; пустой/нулевой список → None."""
+    valid = [k for k in kuts if k is not None]
+    if not valid:
+        return None
+    return max(valid, key=kut_severity)
+
+
 def kut_label(kut: int | None) -> str:
     if kut is None:
         return "—"

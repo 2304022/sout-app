@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block title %}Биологический фактор — {{ rm.name }}{% endblock %}
+{% block content %}
+<div class="breadcrumb">
+  <a href="/orgs/{{ rm.org_id }}">{{ rm.org.name }}</a> /
+  <a href="/rm/{{ rm.id }}">{{ rm.name }}</a> / Биологический фактор
+</div>
+<div class="card">
+  <h2>Биологический фактор (Прил. №9 к Приказу №33н)</h2>
+  <form method="post" action="/factor/bio/{{ rm.id }}/add" id="bio-form">
+    <div class="form-row">
+      <div>
+        <label>Тип биологического агента</label>
+        <select name="bio_type" id="bio-type">
+          <option value="producer">Микроорганизм-продуцент (по ПДК)</option>
+          <option value="pathogen">Патогенный микроорганизм (по группе)</option>
+        </select>
+      </div>
+      <div style="position:relative">
+        <label>Наименование *</label>
+        <input type="text" name="name" id="bio-name" required autocomplete="off"
+               placeholder="Начните вводить название...">
+        <div id="bio-suggest" style="display:none;position:absolute;z-index:99;background:#fff;
+             border:1px solid #ccc;border-radius:4px;width:100%;max-height:220px;overflow-y:auto;
+             box-shadow:0 2px 8px rgba(0,0,0,.15)"></div>
+      </div>
+    </div>
+
+    <div id="producer-fields">
+      <div class="form-row">
+        <div>
+          <label>ПДК, мг/м³ (КОЕ/м³)</label>
+          <input type="number" name="pdk" step="any" min="0">
+        </div>
+        <div>
+          <label>Факт. концентрация</label>
+          <input type="number" name="c_fact" step="any" min="0">
+        </div>
+      </div>
+    </div>
+
+    <div id="pathogen-fields" style="display:none">
+      <label>Группа патогенности (СП 1.3.3118-13)</label>
+      <select name="pathogenicity_group">
+        <option value="4">IV — условно-патогенные (→ 3.1)</option>
+        <option value="3">III — самостоятельные нозологические группы (→ 3.2)</option>
+        <option value="2">II — высококонтагиозные эпидемические (→ 3.3)</option>
+        <option value="1">I — особо опасные инфекции (→ 4)</option>
+      </select>
+    </div>
+
+    <br>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    <a href="/rm/{{ rm.id }}" class="btn btn-secondary">← Назад</a>
+  </form>
+  <div style="margin-top:12px;font-size:12px;color:#777">
+    Продуценты (С/ПДК): ≤1 → 2; &gt;1–10 → 3.1; &gt;10–100 → 3.2; &gt;100 → 3.3.
+    Патогены без измерений: IV → 3.1; III → 3.2; II → 3.3; I → 4.
+  </div>
+</div>
+
+<script>
+(function() {
+  const typeSel = document.getElementById('bio-type');
+  const prod = document.getElementById('producer-fields');
+  const path = document.getElementById('pathogen-fields');
+  const inp = document.getElementById('bio-name');
+  const box = document.getElementById('bio-suggest');
+  let timer;
+
+  function toggle() {
+    const isPath = typeSel.value === 'pathogen';
+    prod.style.display = isPath ? 'none' : '';
+    path.style.display = isPath ? '' : 'none';
+  }
+  typeSel.addEventListener('change', toggle);
+  toggle();
+
+  inp.addEventListener('input', function() {
+    clearTimeout(timer);
+    const q = inp.value.trim();
+    if (q.length < 2) { box.style.display = 'none'; return; }
+    const isPath = typeSel.value === 'pathogen';
+    const url = isPath
+      ? '/api/bio_agents?limit=20&q=' + encodeURIComponent(q)
+      : '/api/bio_producers?limit=20&q=' + encodeURIComponent(q);
+    timer = setTimeout(() => {
+      fetch(url).then(r => r.json()).then(data => {
+        if (!data.length) { box.style.display = 'none'; return; }
+        box.innerHTML = data.map(c => {
+          const info = isPath
+            ? ('группа ' + (c.pathogenicity_group || '?'))
+            : ('ПДКсс=' + (c.pdk_ss ?? '—') + ' кл.' + (c.danger_class || '?'));
+          return `<div class="sug-item" data-json='${JSON.stringify(c)}'
+                    style="padding:6px 10px;cursor:pointer;font-size:13px;border-bottom:1px solid #eee">
+                    ${c.name}<span style="font-size:11px;color:#888;margin-left:6px">${info}</span>
+                  </div>`;
+        }).join('');
+        box.style.display = 'block';
+        box.querySelectorAll('.sug-item').forEach(el => {
+          el.addEventListener('mouseenter', () => el.style.background = '#eaf2ff');
+          el.addEventListener('mouseleave', () => el.style.background = '');
+          el.addEventListener('click', () => {
+            const c = JSON.parse(el.dataset.json);
+            inp.value = c.name;
+            if (isPath) {
+              const g = document.querySelector('[name="pathogenicity_group"]');
+              if (g && c.pathogenicity_group) g.value = c.pathogenicity_group;
+            } else {
+              const p = document.querySelector('[name="pdk"]');
+              if (p && c.pdk_ss != null) p.value = c.pdk_ss;
+            }
+            box.style.display = 'none';
+          });
+        });
+      });
+    }, 250);
+  });
+  document.addEventListener('click', e => {
+    if (!box.contains(e.target) && e.target !== inp) box.style.display = 'none';
+  });
+})();
+</script>
+
+{% if items %}
+<div class="card">
+  <table>
+    <thead><tr><th>Наименование</th><th>Тип</th><th>ПДК</th><th>Сфакт</th><th>Группа</th><th>Класс УТ</th><th></th></tr></thead>
+    <tbody>
+    {% for m in items %}
+    <tr>
+      <td>{{ m.name }}</td>
+      <td>{{ 'продуцент' if m.bio_type == 'producer' else 'патоген' }}</td>
+      <td>{{ m.pdk or '—' }}</td>
+      <td>{{ m.c_fact or '—' }}</td>
+      <td>{{ {1:'I',2:'II',3:'III',4:'IV'}[m.pathogenicity_group] if m.pathogenicity_group else '—' }}</td>
+      <td><span class="kut-{{ m.kut }}">{{ {2:'2',31:'3.1',32:'3.2',33:'3.3',34:'3.4',4:'4'}[m.kut] if m.kut else '—' }}</span></td>
+      <td>
+        <form method="post" action="/factor/bio/{{ rm.id }}/delete/{{ m.id }}">
+          <button class="btn btn-danger" style="font-size:11px">✕</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}
