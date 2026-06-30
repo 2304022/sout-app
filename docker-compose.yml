@@ -1,34 +1,11 @@
 services:
-  # Базовая версия — БЕЗ данных, всегда поднимается на порту 5680.
   sout:
     build: .
-    image: sout-app:latest
     ports:
       - "5680:5680"
     volumes:
       - sout_data:/data
-    environment:
-      - APP_PORT=5680
-      - SEED_DEMO_DATA=false
-    restart: unless-stopped
-
-  # Демо-версия — С данными (организация «Югополис» + РМ), порт 5681.
-  # Опциональна: поднимается только с профилем demo.
-  #   docker compose --profile demo up -d
-  sout-demo:
-    image: sout-app:latest      # переиспользует образ, собранный сервисом sout
-    profiles: ["demo"]
-    depends_on:
-      - sout
-    ports:
-      - "5681:5681"
-    volumes:
-      - sout_demo_data:/data
-    environment:
-      - APP_PORT=5681
-      - SEED_DEMO_DATA=true
     restart: unless-stopped
 
 volumes:
   sout_data:
-  sout_demo_data:
