@@ -60,6 +60,7 @@ def _ensure_summary(rm: Workplace, db: Session) -> Summary:
     if rm.summary is None:
         s = Summary(rm_id=rm.id)
         db.add(s)
+        rm.summary = s   # заполняем связь, иначе после flush rm.summary остаётся None
         db.flush()
     return rm.summary
 

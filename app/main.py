@@ -1,4 +1,5 @@
 import logging
+import os
 
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
@@ -19,11 +20,27 @@ app.include_router(workplaces.router)
 app.include_router(factors.router)
 
 
+def _demo_enabled() -> bool:
+    return os.getenv("SEED_DEMO_DATA", "").strip().lower() in ("1", "true", "yes", "on")
+
+
 @app.on_event("startup")
 def on_startup():
     init_db()
     from app.seed import run_all
     run_all()
+    # Опциональная загрузка демо-данных (организация + РМ + замеры)
+    if _demo_enabled():
+        from app.database import SessionLocal
+        from app.demo import load_demo
+        db = SessionLocal()
+        try:
+            if load_demo(db):
+                logging.info("SEED_DEMO_DATA=true → демо-данные загружены")
+            else:
+                logging.info("SEED_DEMO_DATA=true → демо-данные уже присутствуют")
+        finally:
+            db.close()
 
 
 @app.get("/", response_class=HTMLResponse)
